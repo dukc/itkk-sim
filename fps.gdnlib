@@ -1,0 +1,14 @@
+[general]
+
+singleton=false
+load_once=true
+symbol_prefix="fps"
+reloadable=true
+
+[entry]
+
+X11.64="res://dlang/libfps-godot-modules.so"
+
+[dependencies]
+
+X11.64=[  ]

@@ -1,0 +1,7 @@
+name "fps-godot-modules"
+description "A minimal D application."
+authors "Ate Eskola"
+copyright "Copyright © 2020, Ate Eskola"
+license "proprietary"
+targetType "dynamicLibrary"
+dependency "godot-d" version="~>0.1.9"
