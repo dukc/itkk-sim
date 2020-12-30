@@ -1,13 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Game_Manager.gd" type="Script" id=1]
 [ext_resource path="res://prefabs/environment/Environment.tscn" type="PackedScene" id=2]
 [ext_resource path="res://sprites/crosshair.png" type="Texture" id=3]
 [ext_resource path="res://prefabs/player_demo/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://prefabs/player_demo/bullet_mat.tres" type="Material" id=5]
-
-[sub_resource type="BoxShape" id=1]
-extents = Vector3( 300, 1, 300 )
 
 [sub_resource type="CubeMesh" id=2]
 
@@ -19,12 +16,7 @@ script = ExtResource( 1 )
 [node name="DirectionalLight" type="DirectionalLight" parent="Environment"]
 transform = Transform( 0.857714, 0.292485, 0.422823, -0.12001, -0.685792, 0.717835, 0.499924, -0.66644, -0.553112, 0, 70.5909, 0 )
 light_energy = 1.13
-
-[node name="Dead_Zone" type="Area" parent="."]
-transform = Transform( 10, 0, 0, 0, 1, 0, 0, 0, 10, 0, -10, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Dead_Zone"]
-shape = SubResource( 1 )
+directional_shadow_mode = 0
 
 [node name="Spawn_Point" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4239, 3.37406, 0.259909 )
@@ -61,7 +53,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88192, 1, -16.4228 )
 visible = false
 mesh = SubResource( 2 )
 material/0 = ExtResource( 5 )
-[connection signal="body_entered" from="Dead_Zone" to="." method="_on_Dead_Zone_body_entered"]
 
 [editable path="Environment"]
 

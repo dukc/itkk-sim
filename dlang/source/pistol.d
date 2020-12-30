@@ -52,7 +52,6 @@ class Pistol : GodotScript!Position3D
          bullet.linearVelocity = direction * 820;
          emitSignal(gs!"fire");
          emitSignal(gs!"s_ammo", ammo);
-         print("dir: ", direction.x.to!string, " ", direction.y.to!string, " ", direction.z.to!string);
          cycled = false;
       }
             

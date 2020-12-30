@@ -1,4 +1,4 @@
-import hud, pistol, playhook;
+import hud, pistol, playhook, transformer;
 import godot.d.register;
 import std.stdio;
 
@@ -8,5 +8,5 @@ mixin GodotNativeLibrary!
 	"fps",
 	
 	// a list of all of your script classes
-	HUD, Pistol, PlayHook
+	HUD, Pistol, PlayHook, Transformer
 );

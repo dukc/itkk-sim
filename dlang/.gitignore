@@ -1,0 +1,14 @@
+.dub
+dub.selections.json
+__dummy.html
+/fps-godot-modules
+fps-godot-modules.so
+fps-godot-modules.dylib
+fps-godot-modules.dll
+fps-godot-modules.a
+fps-godot-modules.lib
+fps-godot-modules-test-*
+*.exe
+*.o
+*.obj
+*.lst
