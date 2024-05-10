@@ -1,5 +1,5 @@
 import godot, godot.audiostreamplayer;
 
 class PlayHook : GodotScript!AudioStreamPlayer
-{  @Method void _play(){owner.playing = true;}
+{  @Method void _play(){owner.play();}
 }

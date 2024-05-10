@@ -1,22 +1,22 @@
-extends KinematicBody
+extends CharacterBody3D
 
 #constants
 const GRAVITY = 9.8
 
 #mouse sensitivity
-export(float,0.1,1.0) var sensitivity_x = 0.5
-export(float,0.1,1.0) var sensitivity_y = 0.4
+@export var sensitivity_x = 0.5 # (float,0.1,1.0)
+@export var sensitivity_y = 0.4 # (float,0.1,1.0)
 
 #physics
-export(float,10.0, 30.0) var speed = 15.0
-export(float,10.0, 50.0) var jump_height = 25
-export(float,1.0, 10.0) var mass = 8.0
-export(float,0.1, 3.0, 0.1) var gravity_scl = 1.0
+@export var speed = 15.0 # (float,10.0, 30.0)
+@export var jump_height = 25 # (float,10.0, 50.0)
+@export var mass = 8.0 # (float,1.0, 10.0)
+@export var gravity_scl = 1.0 # (float,0.1, 3.0, 0.1)
 
 #instances ref
-onready var player_cam = $Camera
-onready var player_hand = $Arm
-onready var ground_ray = $GroundRay
+@onready var player_cam = $Camera3D
+@onready var player_hand = $Arm
+@onready var ground_ray = $GroundRay
 
 #variables
 var mouse_motion = Vector2()
@@ -31,9 +31,9 @@ func _ready():
 func _physics_process(delta):
 	
 	#camera and body rotation
-	rotate_y(deg2rad(20)* - mouse_motion.x * sensitivity_x * delta)
-	player_cam.rotate_x(deg2rad(20) * - mouse_motion.y * sensitivity_y * delta)
-	player_cam.rotation.x = clamp(player_cam.rotation.x, deg2rad(-47), deg2rad(47))
+	rotate_y(deg_to_rad(20)* - mouse_motion.x * sensitivity_x * delta)
+	player_cam.rotate_x(deg_to_rad(20) * - mouse_motion.y * sensitivity_y * delta)
+	player_cam.rotation.x = clamp(player_cam.rotation.x, deg_to_rad(-47), deg_to_rad(47))
 	player_hand.rotation.x = lerp(player_hand.rotation.x, player_cam.rotation.x, 0.2)
 	mouse_motion = Vector2()
 	
@@ -49,7 +49,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("space") and ground_ray.is_colliding():
 		velocity.y = jump_height
 	
-	gravity_speed = move_and_slide(velocity).y
+	set_velocity(velocity)
+	move_and_slide()
+	gravity_speed = velocity.y
 	
 	pass
 

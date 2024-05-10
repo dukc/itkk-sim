@@ -3,7 +3,7 @@
 [ext_resource path="res://prefabs/player_demo/bullet_mat.tres" type="Material" id=1]
 [ext_resource path="res://prefabs/player_demo/Shot_Effect.gd" type="Script" id=2]
 
-[sub_resource type="ParticlesMaterial" id=1]
+[sub_resource type="ParticleProcessMaterial" id=1]
 
 spread = 0.6
 gravity = Vector3( 0, 0, 0 )
@@ -12,7 +12,7 @@ angular_velocity = 1.09674e+033
 scale = 0.04
 color = Color( 1, 0.984314, 0.0235294, 1 )
 
-[sub_resource type="CubeMesh" id=2]
+[sub_resource type="BoxMesh" id=2]
 
 
 [node name="Particles" type="Particles"]

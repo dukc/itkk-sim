@@ -1,8 +1,8 @@
 import godot, godot.animationplayer, godot.node,
-   godot.packedscene, godot.position3d, godot.timer;
+   godot.packedscene, godot.marker3d, godot.timer;
 
-class Pistol : GodotScript!Position3D
-{  @OnReady!"Gun_Barrel" Position3D gunBarrel;
+class Pistol : GodotScript!Node3D
+{  @OnReady!"Gun_Barrel" Marker3D gunBarrel;
    @OnReady!"Timer" Timer cycleTimer;
    @OnReady!"ReloadTimer" Timer reloadTimer;
    @OnReady!envPath Node enviroment;
@@ -24,44 +24,44 @@ class Pistol : GodotScript!Position3D
 
    @Method void _ready()
    {  import godot.resourceloader;
-      
+
       cycleTimer.waitTime = cycleTime;
       reloadTimer.waitTime = reloadTime;
       ammo = ammoSpace;
       bulletPrefab= ResourceLoader.load(bulletPath).as!PackedScene;
    }
-      
+
    @Method void _physics_process(float delta)
    {  import godot.input;
-      
-      if (Input.isActionJustPressed(gs!"fire") ) triggerPressed = true;
-      else if (Input.isActionJustReleased(gs!"fire") ) triggerPressed = false;
-      
+
+      if (Input.isActionJustPressed("fire") ) triggerPressed = true;
+      else if (Input.isActionJustReleased("fire") ) triggerPressed = false;
+
       if(triggerPressed && cycled && ammo)
       {  import std.algorithm, std.array, std.conv;
-         import godot.spatial, godot.rigidbody;
-         
+         import godot.node3d, godot.rigidbody3d;
+
          ammo--;
          cycleTimer.start();
-         auto bullet = bulletPrefab.instance().as!RigidBody;
+         auto bullet = bulletPrefab.instantiate().as!RigidBody3D;
          enviroment.addChild(bullet);
-         auto direction = -gunBarrel.globalTransform.basis.elements[]
+         auto direction = -gunBarrel.globalBasis.elements[]
             .map!(el=>el.z).staticArray!3.Vector3.normalized;
-         bullet.translation = gunBarrel.globalTransform.origin;
-         bullet.lookAt(bullet.translation + direction, Vector3(0,1,0));
+         bullet.position = gunBarrel.globalTransform.origin;
+         bullet.lookAt(bullet.position + direction, Vector3(0,1,0));
          bullet.linearVelocity = direction * 820;
-         emitSignal(gs!"fire");
-         emitSignal(gs!"s_ammo", ammo);
+         emitSignal("fire");
+         emitSignal("s_ammo", ammo);
          cycled = false;
       }
-            
-      else if (Input.isActionJustPressed(gs!"reload"))
+
+      else if (Input.isActionJustPressed("reload"))
       {  import godot.gdscript;
-         
+
          cycled = false;
          ammo = 0;
-         emitSignal(gs!"s_ammo", ammo);
-         emitSignal(gs!"s_reload", reloadTime);
+         emitSignal("s_ammo", ammo);
+         emitSignal("s_reload", reloadTime);
          reloadTimer.start();
       }
    }
@@ -69,10 +69,10 @@ class Pistol : GodotScript!Position3D
    @Method void _on_timer_timeout()
    {  cycled = true;
    }
-   
+
    @Method void _on_reloadtimer_timeout()
    {  ammo = ammoSpace;
       cycled = true;
-      emitSignal(gs!"s_ammo", ammo);
+      emitSignal("s_ammo", ammo);
    }
 }
