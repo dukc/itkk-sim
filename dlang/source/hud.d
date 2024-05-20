@@ -1,13 +1,14 @@
-import godot, godot.control, godot.label, godot.progressbar, godot.tween;
+import godot, godot.control, godot.engine, godot.label, godot.progressbar, godot.tween;
 
 class HUD : GodotScript!Control
 {  alias owner this;
    @OnReady!"VBoxContainer/AmmoLabel" Label ammoLabel;
    @OnReady!"VBoxContainer/ProgressBar" ProgressBar ammoBar;
-   @OnReady!"VBoxContainer/Tween" Tween hudTween;
 
    @Method _ready()
    {  import std.conv;
+      if (Engine.isEditorHint()) return;
+
       ammoLabel.text = String(text("Ammunition: ", 15));
          // getParent.getNode(gs!"Arm/Hand/Pistol").get(gs!"max_bullet")));
       ammoBar.value = 100;
@@ -19,7 +20,7 @@ class HUD : GodotScript!Control
    }
 
    @Method _on_pistol_s_reload(float rDelay)
-   {  hudTween.tweenProperty
+   {  createTween().tweenProperty
          (ammoBar, "value", 100, rDelay)
          .from(0)
          .setTrans(Tween.TransitionType.transLinear)

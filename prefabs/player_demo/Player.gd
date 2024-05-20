@@ -14,8 +14,7 @@ const GRAVITY = 9.8
 @export var gravity_scl = 1.0 # (float,0.1, 3.0, 0.1)
 
 #instances ref
-@onready var player_cam = $Camera3D
-@onready var player_hand = $Arm
+@onready var player_hand = $Pivot
 @onready var ground_ray = $GroundRay
 
 #variables
@@ -32,9 +31,9 @@ func _physics_process(delta):
 	
 	#camera and body rotation
 	rotate_y(deg_to_rad(20)* - mouse_motion.x * sensitivity_x * delta)
-	player_cam.rotate_x(deg_to_rad(20) * - mouse_motion.y * sensitivity_y * delta)
-	player_cam.rotation.x = clamp(player_cam.rotation.x, deg_to_rad(-47), deg_to_rad(47))
-	player_hand.rotation.x = lerp(player_hand.rotation.x, player_cam.rotation.x, 0.2)
+	player_hand.rotate_x(deg_to_rad(20) * - mouse_motion.y * sensitivity_y * delta)
+	player_hand.rotation.x = clamp(player_hand.rotation.x, deg_to_rad(-47), deg_to_rad(47))
+	# player_hand.rotation.x = player_hand.rotation.x
 	mouse_motion = Vector2()
 	
 	#gravity

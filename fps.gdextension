@@ -1,0 +1,11 @@
+[configuration]
+
+entry_symbol = "fps_gdextension_entry"
+compatibility_minimum = "4.1"
+
+[libraries]
+
+linux.debug.x86_64 = "res://libfps-godot-modules.so"
+linux.release.x86_64 = "res://libfps-godot-modules.so"
+windows.debug.x86_64 = "res://libfps-godot-modules.dll"
+windows.release.x86_64 = "res://libfps-godot-modules.dll"

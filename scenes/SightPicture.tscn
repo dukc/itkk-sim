@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3elhqehtgtdk"]
+
+[ext_resource type="Texture2D" uid="uid://b0eq5e5w07x5g" path="res://sprites/aimdot.png" id="1_obk78"]
+[ext_resource type="Texture2D" uid="uid://cypd5n373p1yy" path="res://sprites/crosshair.png" id="2_78utr"]
+
+[node name="SightPicture" type="Node"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+fov = 20.0
+
+[node name="Zero" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
+
+[node name="Dot" type="Sprite3D" parent="Zero"]
+pixel_size = 0.0001
+fixed_size = true
+texture = ExtResource("1_obk78")
+
+[node name="500m" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.75, -500)
+
+[node name="1000m" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, -1000)
+
+[node name="Crosshair" type="Sprite3D" parent="1000m"]
+pixel_size = 0.0001
+fixed_size = true
+texture = ExtResource("2_78utr")
+
+[node name="1500m" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99945, 0.0331552, 0, -0.0331552, 0.99945, 0, -24, -1500)
+
+[node name="Crosshair" type="Sprite3D" parent="1500m"]
+pixel_size = 0.0001
+fixed_size = true
+texture = ExtResource("2_78utr")
