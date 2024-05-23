@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://scenes/Game_Manager.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://chr4td8x3n34f" path="res://prefabs/environment/Environment.tscn" id="2"]
 [ext_resource type="Environment" uid="uid://sg6i4nj7mk8f" path="res://default_env.tres" id="2_h5v4h"]
-[ext_resource type="Texture2D" uid="uid://cypd5n373p1yy" path="res://sprites/crosshair.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://bfmupaalbwuqy" path="res://prefabs/player_demo/Player.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://dsowffcqxrhn7" path="res://prefabs/player_demo/Plane.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://b3elhqehtgtdk" path="res://scenes/SightPicture.tscn" id="6_8x12a"]
 
-[sub_resource type="BoxMesh" id="1"]
+[sub_resource type="World3D" id="World3D_aqcyw"]
 
 [node name="Game_Manager" type="Node"]
 script = ExtResource("1")
@@ -22,36 +22,36 @@ transform = Transform3D(0.857714, 0.292484, 0.422823, -0.12001, -0.685792, 0.717
 light_energy = 1.13
 directional_shadow_mode = 0
 
-[node name="Spawn_Point" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.4239, 3.37406, 0.259909)
-
-[node name="CrossHair" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="CrossHair"]
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("3")
-
 [node name="Player" parent="." instance=ExtResource("4")]
+
+[node name="Camera3D" parent="Player/Pivot" index="0"]
+cull_mask = 1047553
+current = true
 
 [node name="pistol" parent="Player/Pivot" index="4"]
 envPath = NodePath("../../../Environment")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88192, 1, -16.4228)
-visible = false
-mesh = SubResource("1")
-
 [node name="Plane A" parent="." instance=ExtResource("6")]
 transform = Transform3D(-1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 75, 150, -2500)
 linear_velocity = Vector3(0, 0, 100)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+world_3d = SubResource("World3D_aqcyw")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="Camera3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_8x12a")]
+current = true
 
 [editable path="Environment"]
 [editable path="Player"]

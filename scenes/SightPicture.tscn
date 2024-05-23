@@ -1,12 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3elhqehtgtdk"]
+[gd_scene load_steps=4 format=3 uid="uid://b3elhqehtgtdk"]
 
 [ext_resource type="Texture2D" uid="uid://b0eq5e5w07x5g" path="res://sprites/aimdot.png" id="1_obk78"]
 [ext_resource type="Texture2D" uid="uid://cypd5n373p1yy" path="res://sprites/crosshair.png" id="2_78utr"]
 
-[node name="SightPicture" type="Node"]
+[sub_resource type="Curve3D" id="Curve3D_6857r"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 400, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="SightPicture" type="Camera3D"]
 fov = 20.0
+
+[node name="Laskettu ballistiikka" type="Node" parent="."]
+editor_description = "Lähtö: 830m/s
+Energianpuoliintumismatka: 600m
+Tähtäinkorkeus 12cm
+G: 9.825"
 
 [node name="Zero" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
@@ -17,10 +28,10 @@ fixed_size = true
 texture = ExtResource("1_obk78")
 
 [node name="500m" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.75, -500)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.328, -500)
 
 [node name="1000m" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, -1000)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.1, -1000)
 
 [node name="Crosshair" type="Sprite3D" parent="1000m"]
 pixel_size = 0.0001
@@ -28,9 +39,12 @@ fixed_size = true
 texture = ExtResource("2_78utr")
 
 [node name="1500m" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.99945, 0.0331552, 0, -0.0331552, 0.99945, 0, -24, -1500)
+transform = Transform3D(1, 0, 0, 0, 0.995056, 0.0993197, 0, -0.0993197, 0.995056, 0, -31.6, -1500)
 
 [node name="Crosshair" type="Sprite3D" parent="1500m"]
 pixel_size = 0.0001
 fixed_size = true
 texture = ExtResource("2_78utr")
+
+[node name="Path3D" type="Path3D" parent="1500m"]
+curve = SubResource("Curve3D_6857r")

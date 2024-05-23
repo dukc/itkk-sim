@@ -41,7 +41,8 @@ reload={
 
 [physics]
 
-3d/default_gravity=9.83
+common/physics_ticks_per_second=180
+3d/default_gravity=9.825
 3d/default_linear_damp=0.0
 
 [rendering]

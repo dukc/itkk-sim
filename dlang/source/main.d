@@ -1,4 +1,4 @@
-import hud, pistol, playhook, transformer;
+import airdrag, hud, pistol, transformer;
 import godot;
 
 mixin GodotNativeLibrary!
@@ -7,5 +7,5 @@ mixin GodotNativeLibrary!
 	"fps",
 
 	// a list of all of your script classes
-	HUD, Pistol, Transformer
+	Airdrag, HUD, Pistol, Transformer
 );
