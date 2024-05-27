@@ -138,6 +138,7 @@ libraries = {
 }
 
 [node name="ReloadTimer" type="Timer" parent="Pivot/pistol"]
+one_shot = true
 
 [node name="GroundRay" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)

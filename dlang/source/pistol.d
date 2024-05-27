@@ -1,4 +1,4 @@
-import godot, godot.animationplayer, godot.engine, godot.node,
+import godot, godot.animationplayer, godot.engine, godot.inputevent, godot.node,
    godot.packedscene, godot.marker3d, godot.timer;
 
 import std.conv : text;
@@ -9,6 +9,7 @@ class Pistol : GodotScript!Node3D
    @OnReady!"ReloadTimer" Timer reloadTimer;
    @OnReady!envPath Node enviroment;
 
+   @Property @DefaultValue!false bool triggerPressed;
    @Property @DefaultValue!(1.0) float cycleTime;
    @Property @DefaultValue!16 int ammoSpace;
    @Property @DefaultValue!(1.0) float reloadTime;
@@ -17,7 +18,7 @@ class Pistol : GodotScript!Node3D
    @Property NodePath envPath;
 
    bool cycled = true;
-   bool triggerPressed = false;
+
    int ammo = 0;
    Ref!PackedScene bulletPrefab;
 
@@ -50,12 +51,7 @@ class Pistol : GodotScript!Node3D
    }
 
    @Method void _physics_process(float delta)
-   {  import godot.input;
-
-      if (Engine.isEditorHint()) return;
-
-      if (Input.isActionJustPressed("fire") ) triggerPressed = true;
-      else if (Input.isActionJustReleased("fire") ) triggerPressed = false;
+   {  if (Engine.isEditorHint()) return;
 
       if(triggerPressed && cycled && ammo)
       {  import std.algorithm, std.array, std.conv;
@@ -74,16 +70,24 @@ class Pistol : GodotScript!Node3D
          s_ammo(ammo);
          cycled = false;
       }
+   }
 
-      else if (Input.isActionJustPressed("reload"))
-      {  import godot.gdscript;
+   @Method void _reload()
+   {  import godot.gdscript;
 
-         cycled = false;
-         ammo = 0;
-         s_ammo(ammo);
-         s_reload(reloadTime);
-         reloadTimer.start();
-      }
+      cycled = false;
+      ammo = 0;
+      s_ammo(ammo);
+      s_reload(reloadTime);
+      reloadTimer.start();
+   }
+
+   @Method void _unhandled_input(InputEvent event)
+   {  if(Engine.isEditorHint()) return;
+
+      if(event.isActionPressed("fire")) triggerPressed = true;
+      if(event.isActionReleased("fire")) triggerPressed = false;
+      if(cycled && event.isActionPressed("reload")) _reload();
    }
 
    @Method void _on_timer_timeout()
