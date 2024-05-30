@@ -1,5 +1,3 @@
-//import godot, godot.engine, godot.node, godot.object;
-
 import godot, godot.animationplayer, godot.engine, godot.node,
    godot.packedscene, godot.marker3d, godot.timer;
 

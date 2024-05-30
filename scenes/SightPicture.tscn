@@ -1,14 +1,143 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3elhqehtgtdk"]
+[gd_scene load_steps=9 format=3 uid="uid://b3elhqehtgtdk"]
 
 [ext_resource type="Texture2D" uid="uid://b0eq5e5w07x5g" path="res://sprites/aimdot.png" id="1_obk78"]
 [ext_resource type="Texture2D" uid="uid://cypd5n373p1yy" path="res://sprites/crosshair.png" id="2_78utr"]
+[ext_resource type="PackedScene" uid="uid://b26uk5bvpauha" path="res://scenes/Arc.tscn" id="3_68l75"]
+[ext_resource type="Script" path="res://addons/godot-polyliner/Line3D/LinePath3D.gd" id="4_jm7pn"]
+[ext_resource type="Script" path="res://addons/godot-polyliner/Line3D/Line3D.gd" id="5_8xfyb"]
 
-[sub_resource type="Curve3D" id="Curve3D_6857r"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 400, 0, 0, 0, 0, 0, 0, 0, 0, 0, 200, 0),
-"tilts": PackedFloat32Array(0, 0)
+[sub_resource type="Shader" id="Shader_hu04e"]
+code = "shader_type spatial;
+render_mode skip_vertex_transform;
+render_mode depth_draw_always;
+//render_mode alpha_to_coverage_and_one;
+
+#include \"res://addons/godot-polyliner/shaders/include/polyliner_inc.gdshaderinc\"
+
+uniform float line_width = 0.03;
+uniform sampler2D width_curve : source_color;
+uniform bool tangent_facing = false;
+uniform bool rounded = false;
+uniform bool tube_normal = true;
+
+uniform bool uv_matches_width = true;
+uniform vec2 tex_scale = vec2(1.0,1.0);
+
+varying float is_end;
+void vertex(){
+	VERTEX = (MODELVIEW_MATRIX * vec4(VERTEX,1.0)).xyz;
+	
+	NORMAL = mat3(MODELVIEW_MATRIX) * NORMAL;
+	TANGENT = mat3(MODELVIEW_MATRIX) * TANGENT;
+	BINORMAL = mat3(MODELVIEW_MATRIX) * BINORMAL;
+	
+	quick_line(line_width, rounded);
+	
+	if (uv_matches_width) { UV.x /= line_width; }
+	
+	
+	UV.x = 1.0-UV.x;
+	
+	float line_length = UV2.x;
+	UV2 = UV;
+	UV2.x *= line_length;
+	
+	// correct the texture coordinates at the rounded ends
+	// TODO: doesn't take angle of the rounded end into account at all
+	if (rounded) {
+		// the world may never know
+		// why 1.414 is the exact value which fixes the texcoords
+		const float SQ2 = sqrt(2.0);
+		float uv_correct = -is_end;
+		
+		if (uv_matches_width) { uv_correct *= line_width*SQ2; } 
+		else { uv_correct *= line_width/abs(tex_scale.x); }
+//		if (abs(is_end) > 0.001) {
+//			float i = acos(dot(TANGENT,normalize(cross(NORMAL,normalize(VERTEX)))));
+//			float xe = 1.0/(i*0.5+0.5);
+//			uv_correct *= xe*abs(tex_scale.x);
+//		}
+		UV.x += uv_correct;
+		UV2.x += uv_correct;
+	}
+	
+	// godot seems to reapply the modelview transform later
+	// we have no choice but to do the inverse transform
+	// af1d81d fixes this
+	TANGENT =  TANGENT * mat3(MODELVIEW_MATRIX);
+	BINORMAL = BINORMAL * mat3(MODELVIEW_MATRIX);
 }
-point_count = 2
+
+uniform sampler2D texture_alb : hint_default_white, source_color;
+uniform sampler2D texture_rgh : hint_default_white;
+uniform bool tex_stretch = true;
+
+uniform vec4 color : source_color = vec4(vec3(1.0),1.0);
+uniform float metallic  : hint_range(0.0,1.0,0.005) = 0.0;
+uniform float specular  : hint_range(0.0,1.0,0.005) = 0.5;
+uniform float roughness : hint_range(0.0,1.0,0.005) = 0.5;
+
+void fragment() {
+	if (!FRONT_FACING) { NORMAL = -NORMAL; }
+	
+	if (tube_normal && !tangent_facing) { 
+		NORMAL_MAP = getLineTubeNormal(UV,is_end,rounded);
+	}
+	
+	if (rounded && abs(is_end) > 0.0001) {
+		// pure heuristics
+		float softner = magic_aa(6000.0,VERTEX,VIEWPORT_SIZE);
+		softner *= (1.0/line_width) * (min(abs(is_end)*2.0,1.0));
+		ALPHA *= smoothstep(1.0,1.0+softner,getDistToLineCenter(UV,is_end));
+	}
+	
+	vec2 uv_alb = UV2;
+	if (tex_stretch) {
+		uv_alb = UV;
+	}
+	uv_alb *= tex_scale;
+	uv_alb = uv_alb.yx; // more intuitive
+	
+	vec4 alb_sample = texture(texture_alb,uv_alb.yx);
+	vec4 rgh_sample = texture(texture_rgh,uv_alb.yx);
+	
+	ALBEDO = alb_sample.rgb * alb_sample.a * color.rgb;
+	SPECULAR = specular;
+	ROUGHNESS = roughness * rgh_sample.r;
+	METALLIC = metallic;
+	
+	ALPHA_SCISSOR_THRESHOLD = 0.001; // comment out for alpha blending
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rbrqw"]
+render_priority = 0
+shader = SubResource("Shader_hu04e")
+shader_parameter/line_width = 0.9
+shader_parameter/tangent_facing = false
+shader_parameter/rounded = false
+shader_parameter/tube_normal = false
+shader_parameter/uv_matches_width = true
+shader_parameter/tex_scale = Vector2(1, 1)
+shader_parameter/tex_stretch = false
+shader_parameter/color = Color(0.592157, 1, 0, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/specular = 0.5
+shader_parameter/roughness = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g71iy"]
+render_priority = 0
+shader = SubResource("Shader_hu04e")
+shader_parameter/line_width = 1.0
+shader_parameter/tangent_facing = false
+shader_parameter/rounded = false
+shader_parameter/tube_normal = false
+shader_parameter/uv_matches_width = true
+shader_parameter/tex_scale = Vector2(1, 1)
+shader_parameter/tex_stretch = false
+shader_parameter/color = Color(0.592157, 1, 0, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/specular = 0.5
+shader_parameter/roughness = 0.5
 
 [node name="SightPicture" type="Camera3D"]
 fov = 20.0
@@ -17,7 +146,11 @@ fov = 20.0
 editor_description = "Lähtö: 830m/s
 Energianpuoliintumismatka: 600m
 Tähtäinkorkeus 12cm
-G: 9.825"
+G: 9.825
+
+Lentoaika 1500m 2.875130 s
+
+Ennakkoringit heko 150m, ryko 300m, suko 666,67m"
 
 [node name="Zero" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
@@ -39,12 +172,146 @@ fixed_size = true
 texture = ExtResource("2_78utr")
 
 [node name="1500m" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.995056, 0.0993197, 0, -0.0993197, 0.995056, 0, -31.6, -1500)
+transform = Transform3D(1, 0, 0, 0, 0.992758, 0.120137, 0, -0.120137, 0.992758, 0, -31.6, -1500)
 
 [node name="Crosshair" type="Sprite3D" parent="1500m"]
 pixel_size = 0.0001
 fixed_size = true
 texture = ExtResource("2_78utr")
 
-[node name="Path3D" type="Path3D" parent="1500m"]
-curve = SubResource("Curve3D_6857r")
+[node name="HelicopterLeadRight" parent="1500m" instance=ExtResource("3_68l75")]
+transform = Transform3D(1.5, 0, 0, 0, -6.55671e-08, 1.5, 0, -1.5, -6.55671e-08, 0, 0, 0)
+script = ExtResource("4_jm7pn")
+iter_min_dist = 1.0
+material = SubResource("ShaderMaterial_rbrqw")
+
+[node name="HelicopterLeadLeft" parent="1500m" instance=ExtResource("3_68l75")]
+transform = Transform3D(-1.5, -1.31134e-07, 5.73206e-15, 0, -6.55671e-08, -1.5, 1.31134e-07, -1.5, 6.55671e-08, 0, 0, 0)
+script = ExtResource("4_jm7pn")
+iter_min_dist = 0.5
+uv_size = 0.5
+material = SubResource("ShaderMaterial_rbrqw")
+
+[node name="AttackPlaneLeadRight" parent="1500m" instance=ExtResource("3_68l75")]
+transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 3, 0, -3, -1.31134e-07, 0, 0, 0)
+script = ExtResource("4_jm7pn")
+iter_min_dist = 0.5
+uv_size = 0.5
+material = SubResource("ShaderMaterial_rbrqw")
+
+[node name="AttackPlaneLeadLeft" parent="1500m" instance=ExtResource("3_68l75")]
+transform = Transform3D(-3, -2.62268e-07, 1.14641e-14, 0, -1.31134e-07, -3, 2.62268e-07, -3, 1.31134e-07, 0, 0, 0)
+script = ExtResource("4_jm7pn")
+iter_min_dist = 0.5
+uv_size = 0.5
+material = SubResource("ShaderMaterial_rbrqw")
+
+[node name="JetLeadRight" parent="1500m" instance=ExtResource("3_68l75")]
+transform = Transform3D(6.667, 0, 0, 0, -2.91424e-07, 6.667, 0, -6.667, -2.91424e-07, 0, 0, 0)
+script = ExtResource("4_jm7pn")
+iter_min_dist = 0.5
+uv_size = 0.5
+material = SubResource("ShaderMaterial_rbrqw")
+
+[node name="JetLeadLeft" parent="1500m" instance=ExtResource("3_68l75")]
+transform = Transform3D(-6.667, -5.82848e-07, 2.54771e-14, 0, -2.91424e-07, -6.667, 5.82848e-07, -6.667, 2.91424e-07, 0, 0, 0)
+script = ExtResource("4_jm7pn")
+iter_min_dist = 0.5
+uv_size = 0.5
+material = SubResource("ShaderMaterial_rbrqw")
+
+[node name="AttackPlaneDirLeft2" type="Node3D" parent="1500m"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, 0, 0)
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -210, 0, 0, -390)
+
+[node name="AttackPlaneDirLeft1" type="Node3D" parent="1500m"]
+transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, 0, 0, 0)
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -210, 0, 0, -390)
+
+[node name="AttackPlaneDirStraight" type="Node3D" parent="1500m"]
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -210, 0, 0, -390)
+
+[node name="AttackPlaneDirRight1" type="Node3D" parent="1500m"]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 0, 0, 0)
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -210, 0, 0, -390)
+
+[node name="AttackPlaneDirRight2" type="Node3D" parent="1500m"]
+transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0)
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -210, 0, 0, -390)
+
+[node name="JetDirLeft4" type="Node3D" parent="1500m"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, 0, 0)
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+
+[node name="JetDirLeft3" type="Node3D" parent="1500m"]
+transform = Transform3D(0.991445, 0, 0.130526, 0, 1, 0, -0.130526, 0, 0.991445, 0, 0, 0)
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+
+[node name="JetDirLeft2" type="Node3D" parent="1500m"]
+transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, 0, 0, 0)
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+
+[node name="JetDirLeft1" type="Node3D" parent="1500m"]
+transform = Transform3D(0.999048, 0, 0.0436194, 0, 1, 0, -0.0436194, 0, 0.999048, 0, 0, 0)
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+
+[node name="JetDirStraight" type="Node3D" parent="1500m"]
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+
+[node name="JetDirRight1" type="Node3D" parent="1500m"]
+transform = Transform3D(0.999048, 0, -0.0436194, 0, 1, 0, 0.0436194, 0, 0.999048, 0, 0, 0)
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+
+[node name="JetDirRight2" type="Node3D" parent="1500m"]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 0, 0, 0)
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+
+[node name="JetDirRight3" type="Node3D" parent="1500m"]
+transform = Transform3D(0.991445, 0, -0.130526, 0, 1, 0, 0.130526, 0, 0.991445, 0, 0, 0)
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+
+[node name="JetDirRight4" type="Node3D" parent="1500m"]
+transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0)
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, 0.492404, 0.0868241, 0, 0.173648, -0.984808, -0.5, 0.852868, 0.150384, 0, 0, 0)
+directional_shadow_mode = 0
+sky_mode = 1
+
+[node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.492404, -0.0868241, 0, 0.173648, -0.984808, 0.5, 0.852868, 0.150384, 0, 0, 0)
+directional_shadow_mode = 0
+sky_mode = 1
