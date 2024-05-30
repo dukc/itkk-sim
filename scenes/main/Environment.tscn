@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://chr4td8x3n34f"]
 
-[ext_resource type="PackedScene" uid="uid://l65i0vc8esry" path="res://prefabs/environment/Target.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://l65i0vc8esry" path="res://scenes/enemies/Target.tscn" id="2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d2xjf"]
 albedo_color = Color(0.392157, 0.317647, 0.882353, 1)

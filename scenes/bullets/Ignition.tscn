@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6j5o2jtf1y53"]
 
-[ext_resource type="Texture2D" uid="uid://ovp77ndctxdg" path="res://sprites/ignition.png" id="1"]
-[ext_resource type="AudioStream" uid="uid://c478fks1nsswq" path="res://prefabs/player_demo/soundscrate-gun-shot-1.wav" id="2"]
+[ext_resource type="Texture2D" uid="uid://ovp77ndctxdg" path="res://scenes/bullets/ignition.png" id="1_8d601"]
+[ext_resource type="AudioStream" uid="uid://c478fks1nsswq" path="res://scenes/gun/soundscrate-gun-shot-1.wav" id="2_17oxj"]
 
 [node name="Node3D" type="Node3D"]
 
 [node name="Flash" type="Sprite3D" parent="."]
 pixel_size = 0.09
 billboard = 1
-texture = ExtResource("1")
+texture = ExtResource("1_8d601")
 
 [node name="FlashDestructor" type="Timer" parent="Flash"]
 wait_time = 0.057
@@ -18,7 +18,7 @@ autostart = true
 autostart = true
 
 [node name="Bang" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("2")
+stream = ExtResource("2_17oxj")
 unit_size = 100.0
 max_db = 6.0
 autoplay = true

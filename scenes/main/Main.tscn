@@ -1,37 +1,38 @@
 [gd_scene load_steps=8 format=3 uid="uid://cv66jln7qjm43"]
 
-[ext_resource type="Script" path="res://scenes/Game_Manager.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://chr4td8x3n34f" path="res://prefabs/environment/Environment.tscn" id="2"]
-[ext_resource type="Environment" uid="uid://sg6i4nj7mk8f" path="res://default_env.tres" id="2_h5v4h"]
-[ext_resource type="PackedScene" uid="uid://bfmupaalbwuqy" path="res://prefabs/player_demo/Player.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://dsowffcqxrhn7" path="res://prefabs/player_demo/Plane.tscn" id="6"]
-[ext_resource type="PackedScene" uid="uid://b3elhqehtgtdk" path="res://scenes/SightPicture.tscn" id="6_8x12a"]
+[ext_resource type="Script" path="res://scenes/main/Game_Manager.gd" id="1_rybrq"]
+[ext_resource type="Environment" uid="uid://sg6i4nj7mk8f" path="res://default_env.tres" id="2_rnf4l"]
+[ext_resource type="PackedScene" uid="uid://chr4td8x3n34f" path="res://scenes/main/Environment.tscn" id="3_v8e33"]
+[ext_resource type="PackedScene" uid="uid://bfmupaalbwuqy" path="res://scenes/gun/Machine_gun.tscn" id="4_he5ix"]
+[ext_resource type="PackedScene" uid="uid://dsowffcqxrhn7" path="res://scenes/enemies/Plane.tscn" id="5_7vkdm"]
+[ext_resource type="PackedScene" uid="uid://b3elhqehtgtdk" path="res://scenes/sightpicture/SightPicture.tscn" id="6_0mfcs"]
 
 [sub_resource type="World3D" id="World3D_aqcyw"]
 
 [node name="Game_Manager" type="Node"]
-script = ExtResource("1")
+script = ExtResource("1_rybrq")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_h5v4h")
+environment = ExtResource("2_rnf4l")
 
-[node name="Environment" parent="." instance=ExtResource("2")]
+[node name="Environment" parent="." instance=ExtResource("3_v8e33")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(0.857714, 0.292484, 0.422823, -0.12001, -0.685792, 0.717835, 0.499924, -0.66644, -0.553112, 0, 70.5909, 0)
 light_energy = 1.13
 directional_shadow_mode = 0
 
-[node name="Player" parent="." instance=ExtResource("4")]
+[node name="Player" parent="." instance=ExtResource("4_he5ix")]
 
 [node name="Camera3D" parent="Player/Pivot" index="0"]
 cull_mask = 1047553
 current = true
 
 [node name="pistol" parent="Player/Pivot" index="4"]
+bulletPath = "res://scenes/bullets/Bullet.tscn"
 envPath = NodePath("../../../Environment")
 
-[node name="Plane A" parent="." instance=ExtResource("6")]
+[node name="Plane A" parent="." instance=ExtResource("5_7vkdm")]
 transform = Transform3D(-1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 75, 150, -2500)
 linear_velocity = Vector3(0, 0, 100)
 
@@ -50,7 +51,7 @@ handle_input_locally = false
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
-[node name="Camera3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_8x12a")]
+[node name="Camera3D" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_0mfcs")]
 current = true
 
 [node name="CameraZoomer" type="CameraZoomer" parent="."]

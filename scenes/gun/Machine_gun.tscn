@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://bfmupaalbwuqy"]
 
-[ext_resource type="Script" path="res://prefabs/player_demo/Player.gd" id="1"]
-[ext_resource type="Material" path="res://prefabs/player_demo/pistol_base_mat.tres" id="2_dvj0w"]
-[ext_resource type="AudioStream" uid="uid://c478fks1nsswq" path="res://prefabs/player_demo/soundscrate-gun-shot-1.wav" id="6"]
+[ext_resource type="Script" path="res://scenes/gun/Player.gd" id="1"]
+[ext_resource type="Material" path="res://scenes/gun/pistol_base_mat.tres" id="2_dvj0w"]
+[ext_resource type="AudioStream" uid="uid://c478fks1nsswq" path="res://scenes/gun/soundscrate-gun-shot-1.wav" id="6"]
 
 [sub_resource type="CapsuleShape3D" id="3"]
 margin = 0.02
@@ -76,7 +76,7 @@ _data = {
 "idle": SubResource("9")
 }
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Machine Gun" type="CharacterBody3D"]
 collision_layer = 0
 safe_margin = 0.004
 script = ExtResource("1")

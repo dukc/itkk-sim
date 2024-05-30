@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://b3elhqehtgtdk"]
 
-[ext_resource type="Texture2D" uid="uid://b0eq5e5w07x5g" path="res://sprites/aimdot.png" id="1_obk78"]
-[ext_resource type="Texture2D" uid="uid://cypd5n373p1yy" path="res://sprites/crosshair.png" id="2_78utr"]
-[ext_resource type="PackedScene" uid="uid://b26uk5bvpauha" path="res://scenes/Arc.tscn" id="3_68l75"]
+[ext_resource type="Texture2D" uid="uid://b0eq5e5w07x5g" path="res://scenes/sightpicture/aimdot.png" id="1_obk78"]
+[ext_resource type="Texture2D" uid="uid://cypd5n373p1yy" path="res://scenes/sightpicture/crosshair.png" id="2_78utr"]
+[ext_resource type="PackedScene" uid="uid://b26uk5bvpauha" path="res://scenes/sightpicture/Arc.tscn" id="3_68l75"]
 [ext_resource type="Script" path="res://addons/godot-polyliner/Line3D/LinePath3D.gd" id="4_jm7pn"]
 [ext_resource type="Script" path="res://addons/godot-polyliner/Line3D/Line3D.gd" id="5_8xfyb"]
 
