@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="First_Person_Character"
-run/main_scene="res://scenes/main/Main.tscn"
+run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://icon_fpc.PNG"
 
@@ -59,5 +59,6 @@ common/physics_ticks_per_second=180
 
 [rendering]
 
-environment/defaults/default_environment="res://default_env.tres"
+anti_aliasing/screen_space_roughness_limiter/enabled=false
+environment/glow/upscale_mode=0
 quality/shadows/filter_mode=0

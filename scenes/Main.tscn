@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://2tsqanjtsob2"]
+
+[ext_resource type="PackedScene" uid="uid://b05sn5yohi3yl" path="res://scenes/mainmenu/Mainmenu.tscn" id="1_a3iql"]
+[ext_resource type="PackedScene" uid="uid://cv66jln7qjm43" path="res://scenes/scenario/Scenario.tscn" id="2_imc6f"]
+
+[node name="Main" type="MainScene"]
+firstSceneName = "Mainmenu"
+resources = [PackedStringArray("Mainmenu", "Scenario"), [ExtResource("1_a3iql"), ExtResource("2_imc6f")]]

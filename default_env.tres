@@ -1,7 +1,21 @@
-[gd_resource type="Environment" load_steps=2 format=3 uid="uid://sg6i4nj7mk8f"]
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://sg6i4nj7mk8f"]
 
-[sub_resource type="Sky" id="1"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qe58y"]
+sky_top_color = Color(0.776471, 0.729412, 0.952941, 1)
+sky_curve = 0.52233
+ground_curve = 0.00784583
+use_debanding = false
+
+[sub_resource type="Sky" id="Sky_lasou"]
+sky_material = SubResource("ProceduralSkyMaterial_qe58y")
+radiance_size = 0
 
 [resource]
 background_mode = 2
-sky = SubResource("1")
+background_color = Color(0.780392, 0.784314, 0.976471, 1)
+background_energy_multiplier = 0.8
+sky = SubResource("Sky_lasou")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 1.4
+reflected_light_source = 1

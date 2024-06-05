@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://cv66jln7qjm43"]
+
+[ext_resource type="Environment" uid="uid://sg6i4nj7mk8f" path="res://default_env.tres" id="2_rnf4l"]
+[ext_resource type="PackedScene" uid="uid://chr4td8x3n34f" path="res://scenes/scenario/Environment.tscn" id="3_v8e33"]
+[ext_resource type="PackedScene" uid="uid://bfmupaalbwuqy" path="res://scenes/gun/Machine_gun.tscn" id="4_he5ix"]
+[ext_resource type="PackedScene" uid="uid://dsowffcqxrhn7" path="res://scenes/enemies/Plane.tscn" id="5_7vkdm"]
+[ext_resource type="PackedScene" uid="uid://b3elhqehtgtdk" path="res://scenes/sightpicture/SightPicture.tscn" id="6_0mfcs"]
+
+[sub_resource type="Environment" id="Environment_gv6ra"]
+background_energy_multiplier = 0.0
+ambient_light_source = 1
+reflected_light_source = 1
+
+[sub_resource type="World3D" id="World3D_aqcyw"]
+environment = SubResource("Environment_gv6ra")
+
+[node name="Scenario" type="Node"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_rnf4l")
+
+[node name="Environment" parent="." instance=ExtResource("3_v8e33")]
+
+[node name="Player" parent="." instance=ExtResource("4_he5ix")]
+
+[node name="Camera3D" parent="Player/Pivot" index="0"]
+cull_mask = 1047553
+current = true
+
+[node name="pistol" parent="Player/Pivot" index="4"]
+bulletPath = "res://scenes/bullets/Bullet.tscn"
+envPath = NodePath("../../../Environment")
+
+[node name="Plane A" parent="." instance=ExtResource("5_7vkdm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75, 150, -2500)
+linear_velocity = Vector3(0, 0, 100)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+world_3d = SubResource("World3D_aqcyw")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="SightPicture" parent="SubViewportContainer/SubViewport" instance=ExtResource("6_0mfcs")]
+
+[node name="CameraZoomer" type="CameraZoomer" parent="."]
+choices = PackedFloat64Array(35, 29, 24, 20, 17, 14, 12, 10.5)
+choiceI = 2
+
+[node name="MouseCapturer" type="MouseCapturer" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.274991, 0.246214, 0.929386, 0, 0.966654, -0.256087, -0.961447, 0.0704216, 0.265821, 0, 76.1883, 15.4714)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_bake_mode = 0
+
+[connection signal="s_zoom" from="CameraZoomer" to="Player/Pivot/Camera3D" method="set_perspective" binds= [0.25, 4000.0]]
+[connection signal="s_zoom" from="CameraZoomer" to="SubViewportContainer/SubViewport/SightPicture" method="set_perspective" binds= [10.0, 4000.0]]
+
+[editable path="Player"]

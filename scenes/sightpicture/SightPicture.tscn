@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3elhqehtgtdk"]
+[gd_scene load_steps=10 format=3 uid="uid://b3elhqehtgtdk"]
 
 [ext_resource type="Texture2D" uid="uid://b0eq5e5w07x5g" path="res://scenes/sightpicture/aimdot.png" id="1_obk78"]
 [ext_resource type="Texture2D" uid="uid://cypd5n373p1yy" path="res://scenes/sightpicture/crosshair.png" id="2_78utr"]
@@ -121,8 +121,8 @@ shader_parameter/tex_scale = Vector2(1, 1)
 shader_parameter/tex_stretch = false
 shader_parameter/color = Color(0.592157, 1, 0, 1)
 shader_parameter/metallic = 0.0
-shader_parameter/specular = 0.5
-shader_parameter/roughness = 0.5
+shader_parameter/specular = 0.0
+shader_parameter/roughness = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g71iy"]
 render_priority = 0
@@ -136,11 +136,18 @@ shader_parameter/tex_scale = Vector2(1, 1)
 shader_parameter/tex_stretch = false
 shader_parameter/color = Color(0.592157, 1, 0, 1)
 shader_parameter/metallic = 0.0
-shader_parameter/specular = 0.5
-shader_parameter/roughness = 0.5
+shader_parameter/specular = 0.0
+shader_parameter/roughness = 0.0
+
+[sub_resource type="Environment" id="Environment_gv6ra"]
+background_energy_multiplier = 0.0
+ambient_light_source = 1
+reflected_light_source = 1
 
 [node name="SightPicture" type="Camera3D"]
 fov = 20.0
+near = 10.0
+far = 3000.0
 
 [node name="Laskettu ballistiikka" type="Node" parent="."]
 editor_description = "Lähtö: 830m/s
@@ -303,15 +310,21 @@ material = SubResource("ShaderMaterial_g71iy")
 points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+light_bake_mode = 0
 directional_shadow_mode = 0
 sky_mode = 1
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, 0.492404, 0.0868241, 0, 0.173648, -0.984808, -0.5, 0.852868, 0.150384, 0, 0, 0)
+light_bake_mode = 0
 directional_shadow_mode = 0
 sky_mode = 1
 
 [node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.866025, -0.492404, -0.0868241, 0, 0.173648, -0.984808, 0.5, 0.852868, 0.150384, 0, 0, 0)
+light_bake_mode = 0
 directional_shadow_mode = 0
 sky_mode = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gv6ra")

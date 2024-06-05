@@ -22,6 +22,7 @@ metallic = 1.0
 top_radius = 0.015
 bottom_radius = 0.015
 height = 1.1
+radial_segments = 8
 
 [sub_resource type="BoxMesh" id="7"]
 size = Vector3(0.12, 0.12, 0.5)
@@ -100,18 +101,24 @@ near = 0.5
 [node name="Barrel" type="MeshInstance3D" parent="Pivot"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0059447, 0.222, -0.59759)
 material_override = SubResource("StandardMaterial3D_xs1bk")
+cast_shadow = 0
+gi_mode = 0
 mesh = SubResource("CylinderMesh_1ga8e")
 skeleton = NodePath("../pistol")
 
 [node name="Gas cylinder" type="MeshInstance3D" parent="Pivot"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0059447, 0.166, -0.50059)
 material_override = SubResource("StandardMaterial3D_xs1bk")
+cast_shadow = 0
+gi_mode = 0
 mesh = SubResource("CylinderMesh_1ga8e")
 skeleton = NodePath("../Barrel")
 
 [node name="Receiver" type="MeshInstance3D" parent="Pivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0059447, 0.191645, 0.141976)
 material_override = ExtResource("2_dvj0w")
+cast_shadow = 0
+gi_mode = 0
 mesh = SubResource("7")
 skeleton = NodePath("../pistol")
 

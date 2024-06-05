@@ -1,7 +1,7 @@
-import airdrag, camerazoomer, hud, pistol, transformer;
+import airdrag, camerazoomer, hud, mainscene, mousecapturer, pistol, sceneswitcher, transformer;
 import godot;
 
 mixin GodotNativeLibrary!
 (	"fps",
-	Airdrag, CameraZoomer, HUD, Pistol, Transformer
+	Airdrag, CameraZoomer, HUD, MainScene, MouseCapturer, Pistol, SceneSwitcher, Transformer
 );
