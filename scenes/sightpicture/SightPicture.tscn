@@ -112,7 +112,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rbrqw"]
 render_priority = 0
 shader = SubResource("Shader_hu04e")
-shader_parameter/line_width = 0.9
+shader_parameter/line_width = 0.8
 shader_parameter/tangent_facing = false
 shader_parameter/rounded = false
 shader_parameter/tube_normal = false
@@ -127,7 +127,7 @@ shader_parameter/roughness = 0.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g71iy"]
 render_priority = 0
 shader = SubResource("Shader_hu04e")
-shader_parameter/line_width = 1.0
+shader_parameter/line_width = 0.8
 shader_parameter/tangent_facing = false
 shader_parameter/rounded = false
 shader_parameter/tube_normal = false
@@ -163,6 +163,7 @@ Ennakkoringit heko 150m, ryko 300m, suko 666,67m"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
 
 [node name="Dot" type="Sprite3D" parent="Zero"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 pixel_size = 0.0001
 fixed_size = true
 texture = ExtResource("1_obk78")
@@ -174,6 +175,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.328, -500)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.1, -1000)
 
 [node name="Crosshair" type="Sprite3D" parent="1000m"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
 pixel_size = 0.0001
 fixed_size = true
 texture = ExtResource("2_78utr")
@@ -182,6 +184,8 @@ texture = ExtResource("2_78utr")
 transform = Transform3D(1, 0, 0, 0, 0.992758, 0.120137, 0, -0.120137, 0.992758, 0, -31.6, -1500)
 
 [node name="Crosshair" type="Sprite3D" parent="1500m"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
+gi_mode = 0
 pixel_size = 0.0001
 fixed_size = true
 texture = ExtResource("2_78utr")

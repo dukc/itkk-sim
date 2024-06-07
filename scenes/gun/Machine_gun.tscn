@@ -79,11 +79,13 @@ _data = {
 
 [node name="Machine Gun" type="CharacterBody3D"]
 collision_layer = 0
+motion_mode = 1
 safe_margin = 0.004
 script = ExtResource("1")
-sensitivity_x = 0.2
-sensitivity_y = 0.2
+sensitivity_x = 0.15
+sensitivity_y = 0.15
 speed = 6.0
+gravity_scl = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -137,7 +139,7 @@ max_polyphony = 16
 [node name="Timer" type="Timer" parent="Pivot/pistol"]
 
 [node name="Gun_Barrel" type="Marker3D" parent="Pivot/pistol"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.05)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/pistol"]
 libraries = {

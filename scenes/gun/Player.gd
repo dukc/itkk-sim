@@ -27,7 +27,7 @@ func _physics_process(delta):
 	#camera and body rotation
 	rotate_y(deg_to_rad(20)* - mouse_motion.x * sensitivity_x * delta)
 	player_hand.rotate_x(deg_to_rad(20) * - mouse_motion.y * sensitivity_y * delta)
-	player_hand.rotation.x = clamp(player_hand.rotation.x, deg_to_rad(-47), deg_to_rad(47))
+	player_hand.rotation.x = clamp(player_hand.rotation.x, deg_to_rad(-15), deg_to_rad(47))
 	# player_hand.rotation.x = player_hand.rotation.x
 	mouse_motion = Vector2()
 	

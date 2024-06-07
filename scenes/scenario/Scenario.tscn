@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cv66jln7qjm43"]
+[gd_scene load_steps=7 format=3 uid="uid://cv66jln7qjm43"]
 
 [ext_resource type="Environment" uid="uid://sg6i4nj7mk8f" path="res://default_env.tres" id="2_rnf4l"]
 [ext_resource type="PackedScene" uid="uid://chr4td8x3n34f" path="res://scenes/scenario/Environment.tscn" id="3_v8e33"]
@@ -6,13 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dsowffcqxrhn7" path="res://scenes/enemies/Plane.tscn" id="5_7vkdm"]
 [ext_resource type="PackedScene" uid="uid://b3elhqehtgtdk" path="res://scenes/sightpicture/SightPicture.tscn" id="6_0mfcs"]
 
-[sub_resource type="Environment" id="Environment_gv6ra"]
-background_energy_multiplier = 0.0
-ambient_light_source = 1
-reflected_light_source = 1
-
 [sub_resource type="World3D" id="World3D_aqcyw"]
-environment = SubResource("Environment_gv6ra")
 
 [node name="Scenario" type="Node"]
 
@@ -22,9 +16,11 @@ environment = ExtResource("2_rnf4l")
 [node name="Environment" parent="." instance=ExtResource("3_v8e33")]
 
 [node name="Player" parent="." instance=ExtResource("4_he5ix")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Camera3D" parent="Player/Pivot" index="0"]
 cull_mask = 1047553
+environment = null
 current = true
 
 [node name="pistol" parent="Player/Pivot" index="4"]

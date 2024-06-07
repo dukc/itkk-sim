@@ -61,10 +61,10 @@ class Pistol : GodotScript!Node3D
          cycleTimer.start();
          auto bullet = bulletPrefab.instantiate().as!RigidBody3D;
          enviroment.addChild(bullet);
-         auto direction = -gunBarrel.globalBasis.elements[]
+         auto direction = gunBarrel.globalBasis.elements[]
             .map!(el=>el.z).staticArray!3.Vector3.normalized;
          bullet.position = gunBarrel.globalTransform.origin;
-         bullet.lookAt(bullet.position + direction, Vector3(0,1,0));
+         bullet.lookAt(bullet.position - direction, Vector3(0,1,0));
          bullet.linearVelocity = direction * muzzleVelocity;
          fire();
          s_ammo(ammo);

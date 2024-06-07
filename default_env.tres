@@ -8,11 +8,11 @@ use_debanding = false
 
 [sub_resource type="Sky" id="Sky_lasou"]
 sky_material = SubResource("ProceduralSkyMaterial_qe58y")
+process_mode = 3
 radiance_size = 0
 
 [resource]
 background_mode = 2
-background_color = Color(0.780392, 0.784314, 0.976471, 1)
 background_energy_multiplier = 0.8
 sky = SubResource("Sky_lasou")
 ambient_light_source = 2
