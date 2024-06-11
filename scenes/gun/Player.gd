@@ -25,7 +25,7 @@ var gravity_speed = 0
 func _physics_process(delta):
 	
 	#camera and body rotation
-	rotate_y(deg_to_rad(20)* - mouse_motion.x * sensitivity_x * delta)
+	rotate_z(deg_to_rad(20)* - mouse_motion.x * sensitivity_x * delta)
 	player_hand.rotate_x(deg_to_rad(20) * - mouse_motion.y * sensitivity_y * delta)
 	player_hand.rotation.x = clamp(player_hand.rotation.x, deg_to_rad(-15), deg_to_rad(47))
 	# player_hand.rotation.x = player_hand.rotation.x
@@ -37,15 +37,15 @@ func _physics_process(delta):
 	#character moviment
 	var velocity = Vector3()
 	velocity = _axis() * speed
-	velocity.y = gravity_speed
+	velocity.z = gravity_speed
 	
 	#jump
 	if Input.is_action_just_pressed("space") and ground_ray.is_colliding():
-		velocity.y = jump_height
+		velocity.z = jump_height
 	
 	set_velocity(velocity)
 	move_and_slide()
-	gravity_speed = velocity.y
+	gravity_speed = velocity.z
 	
 	pass
 

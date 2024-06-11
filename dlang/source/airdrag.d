@@ -4,7 +4,10 @@ import std.conv;
 
 class Airdrag : GodotScript!Node
 {   RigidBody3D piece;
-    @Property @DefaultValue!(1) double strength;
+    @Property @DefaultValue!(100) float transsonicSpeed;
+    @Property @DefaultValue!(2) float transsonicFactor;
+    @Property @DefaultValue!(1) float strengthMil;
+    @Property @DefaultValue!(1) float altitudeEffectPerKm;
 
     double dragYEffect = 0.0;
     double dragYVel = 0.0;
@@ -16,7 +19,12 @@ class Airdrag : GodotScript!Node
     @Method void _physics_process(float delta)
     {   if (Engine.isEditorHint()) return;
         auto vel = piece.linearVelocity;
-        piece.applyCentralForce(-vel * vel.length * strength);
+        auto spd = vel.length;
+        piece.applyCentralForce(
+            -vel * spd * (strengthMil * .001) *
+            (spd > transsonicSpeed? transsonicFactor: 1) *
+            altitudeEffectPerKm ^^ (piece.position.z / 1000)
+        );
     }
 }
 
