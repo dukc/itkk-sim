@@ -13,14 +13,17 @@ class Pistol : GodotScript!Node3D
    @Property @DefaultValue!(1.0) float cycleTime;
    @Property @DefaultValue!16 int ammoSpace;
    @Property @DefaultValue!(1.0) float reloadTime;
-   @Property @DefaultValue!(1.0) float muzzleVelocity;
-   @Property @DefaultValue!(gs!"res://") String bulletPath;
+   @Property @DefaultValue!(1.0) float ballVelocity;
+   @Property @DefaultValue!(1.0) float tracerVelocity;
+   @Property @DefaultValue!(gs!"res://") String ballPath;
+   @Property @DefaultValue!(gs!"res://") String tracerPath;
    @Property NodePath envPath;
 
    bool cycled = true;
 
    int ammo = 0;
-   Ref!PackedScene bulletPrefab;
+   Ref!PackedScene ballPrefab;
+   Ref!PackedScene tracerPrefab;
 
 
    @Signal @Rename("s_ammo") static void s_ammo2(int b_count);
@@ -31,9 +34,9 @@ class Pistol : GodotScript!Node3D
    void s_reload(float r_delay){
       emitSignal("s_reload", r_delay);
    }
-   @Signal @Rename("fire") static void fire2();
-   void fire(){
-      emitSignal("fire");
+   @Signal @Rename("fire") static void fire2(int type);
+   void fire(int type){
+      emitSignal("fire", type);
    }
 
    // ehkä tähän on olemassa funkio Godotissakin?
@@ -47,7 +50,8 @@ class Pistol : GodotScript!Node3D
       cycleTimer.waitTime = cycleTime;
       reloadTimer.waitTime = reloadTime;
       ammo = ammoSpace;
-      bulletPrefab= ResourceLoader.load(bulletPath).as!PackedScene;
+      ballPrefab = ResourceLoader.load(ballPath).as!PackedScene;
+      tracerPrefab = ResourceLoader.load(tracerPath).as!PackedScene;
    }
 
    @Method void _physics_process(float delta)
@@ -59,14 +63,16 @@ class Pistol : GodotScript!Node3D
 
          ammo--;
          cycleTimer.start();
-         auto bullet = bulletPrefab.instantiate().as!RigidBody3D;
+         size_t bulletType = ammo % 3 == 0;
+         auto bullet = [ballPrefab, tracerPrefab][bulletType].instantiate()
+            .as!RigidBody3D;
          enviroment.addChild(bullet);
          auto direction = gunBarrel.globalBasis.elements[]
             .map!(el=>el.z).staticArray!3.Vector3.normalized;
          bullet.position = gunBarrel.globalTransform.origin;
          bullet.lookAt(bullet.position - direction, Vector3(0,1,0));
-         bullet.linearVelocity = direction * muzzleVelocity;
-         fire();
+         bullet.linearVelocity = direction * [ballVelocity, tracerVelocity][bulletType];
+         fire(cast(int) bulletType);
          s_ammo(ammo);
          cycled = false;
       }

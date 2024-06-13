@@ -25,7 +25,6 @@ environment = null
 current = true
 
 [node name="pistol" parent="Player/Pivot" index="4"]
-bulletPath = "res://scenes/bullets/Bullet.tscn"
 envPath = NodePath("../../../Environment")
 
 [node name="Plane A" parent="." instance=ExtResource("5_7vkdm")]
