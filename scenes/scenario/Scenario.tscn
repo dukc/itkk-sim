@@ -32,6 +32,10 @@ envPath = NodePath("../../../Environment")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 75, 2500, 150)
 linear_velocity = Vector3(0, -100, 0)
 
+[node name="Plane B" parent="." instance=ExtResource("5_7vkdm")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -325, 3500, 250)
+linear_velocity = Vector3(0, -100, 0)
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,7 +65,7 @@ light_indirect_energy = 0.0
 light_volumetric_fog_energy = 0.0
 light_bake_mode = 0
 
-[connection signal="s_zoom" from="CameraZoomer" to="Player/Pivot/Camera3D" method="set_perspective" binds= [0.25, 4000.0]]
+[connection signal="s_zoom" from="CameraZoomer" to="Player/Pivot/Camera3D" method="set_perspective" binds= [0.25, 10000.0]]
 [connection signal="s_zoom" from="CameraZoomer" to="SubViewportContainer/SubViewport/SightPicture" method="set_perspective" binds= [10.0, 4000.0]]
 
 [editable path="Player"]

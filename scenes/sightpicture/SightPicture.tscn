@@ -1,10 +1,27 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3elhqehtgtdk"]
+[gd_scene load_steps=14 format=3 uid="uid://b3elhqehtgtdk"]
 
 [ext_resource type="Texture2D" uid="uid://b0eq5e5w07x5g" path="res://scenes/sightpicture/aimdot.png" id="1_obk78"]
 [ext_resource type="Texture2D" uid="uid://cypd5n373p1yy" path="res://scenes/sightpicture/crosshair.png" id="2_78utr"]
 [ext_resource type="PackedScene" uid="uid://b26uk5bvpauha" path="res://scenes/sightpicture/Arc.tscn" id="3_68l75"]
 [ext_resource type="Script" path="res://addons/godot-polyliner/Line3D/LinePath3D.gd" id="4_jm7pn"]
 [ext_resource type="Script" path="res://addons/godot-polyliner/Line3D/Line3D.gd" id="5_8xfyb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gfw1r"]
+albedo_color = Color(0.592157, 1, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mc21n"]
+material = SubResource("StandardMaterial3D_gfw1r")
+radius = 0.35
+height = 5.873
+radial_segments = 4
+rings = 4
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_crgwy"]
+material = SubResource("StandardMaterial3D_gfw1r")
+radius = 0.35
+height = 2.1
+radial_segments = 4
+rings = 4
 
 [sub_resource type="Shader" id="Shader_hu04e"]
 code = "shader_type spatial;
@@ -139,6 +156,21 @@ shader_parameter/metallic = 0.0
 shader_parameter/specular = 0.0
 shader_parameter/roughness = 0.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ru4q3"]
+render_priority = 0
+shader = SubResource("Shader_hu04e")
+shader_parameter/line_width = 1.1
+shader_parameter/tangent_facing = false
+shader_parameter/rounded = false
+shader_parameter/tube_normal = false
+shader_parameter/uv_matches_width = true
+shader_parameter/tex_scale = Vector2(1, 1)
+shader_parameter/tex_stretch = false
+shader_parameter/color = Color(0.592157, 1, 0, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/specular = 0.0
+shader_parameter/roughness = 0.0
+
 [sub_resource type="Environment" id="Environment_gv6ra"]
 background_energy_multiplier = 0.0
 ambient_light_source = 1
@@ -163,13 +195,37 @@ Ennakkoringit heko 150m, ryko 300m, suko 666,67m"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
 
 [node name="Dot" type="Sprite3D" parent="Zero"]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 pixel_size = 0.0001
 fixed_size = true
 texture = ExtResource("1_obk78")
 
 [node name="500m" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.328, -500)
+
+[node name="RightLevel" type="MeshInstance3D" parent="500m"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.173, 0, 0)
+mesh = SubResource("CapsuleMesh_mc21n")
+
+[node name="LeftLevel" type="MeshInstance3D" parent="500m"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5.173, 0, 0)
+mesh = SubResource("CapsuleMesh_mc21n")
+
+[node name="RightLead20kmph" type="MeshInstance3D" parent="500m"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88, 0, 0)
+mesh = SubResource("CapsuleMesh_crgwy")
+
+[node name="RightLead40kmph" type="MeshInstance3D" parent="500m"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.76, 0, 0)
+mesh = SubResource("CapsuleMesh_crgwy")
+
+[node name="LeftLead20kmph" type="MeshInstance3D" parent="500m"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.88, 0, 0)
+mesh = SubResource("CapsuleMesh_crgwy")
+
+[node name="LeftLead40kmph" type="MeshInstance3D" parent="500m"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.76, 0, 0)
+mesh = SubResource("CapsuleMesh_crgwy")
 
 [node name="1000m" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.1, -1000)
@@ -181,7 +237,7 @@ fixed_size = true
 texture = ExtResource("2_78utr")
 
 [node name="1500m" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.992758, 0.120137, 0, -0.120137, 0.992758, 0, -31.6, -1500)
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871558, 0, -0.0871558, 0.996195, 0, -31.6, -1500)
 
 [node name="Crosshair" type="Sprite3D" parent="1500m"]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
@@ -217,28 +273,14 @@ iter_min_dist = 0.5
 uv_size = 0.5
 material = SubResource("ShaderMaterial_rbrqw")
 
-[node name="JetLeadRight" parent="1500m" instance=ExtResource("3_68l75")]
-transform = Transform3D(6.667, 0, 0, 0, -2.91424e-07, 6.667, 0, -6.667, -2.91424e-07, 0, 0, 0)
-script = ExtResource("4_jm7pn")
-iter_min_dist = 0.5
-uv_size = 0.5
-material = SubResource("ShaderMaterial_rbrqw")
-
-[node name="JetLeadLeft" parent="1500m" instance=ExtResource("3_68l75")]
-transform = Transform3D(-6.667, -5.82848e-07, 2.54771e-14, 0, -2.91424e-07, -6.667, 5.82848e-07, -6.667, 2.91424e-07, 0, 0, 0)
-script = ExtResource("4_jm7pn")
-iter_min_dist = 0.5
-uv_size = 0.5
-material = SubResource("ShaderMaterial_rbrqw")
-
 [node name="AttackPlaneDirLeft2" type="Node3D" parent="1500m"]
-transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, 0, 0)
+transform = Transform3D(0.987689, 0, 0.156435, 0, 1, 0, -0.156435, 0, 0.987689, 0, 0, 0)
 script = ExtResource("5_8xfyb")
 material = SubResource("ShaderMaterial_g71iy")
 points = PackedVector3Array(0, 0, -210, 0, 0, -390)
 
 [node name="AttackPlaneDirLeft1" type="Node3D" parent="1500m"]
-transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, 0, 0, 0)
+transform = Transform3D(0.996918, 0, 0.0784591, 0, 1, 0, -0.0784591, 0, 0.996918, 0, 0, 0)
 script = ExtResource("5_8xfyb")
 material = SubResource("ShaderMaterial_g71iy")
 points = PackedVector3Array(0, 0, -210, 0, 0, -390)
@@ -249,69 +291,86 @@ material = SubResource("ShaderMaterial_g71iy")
 points = PackedVector3Array(0, 0, -210, 0, 0, -390)
 
 [node name="AttackPlaneDirRight1" type="Node3D" parent="1500m"]
-transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 0, 0, 0)
+transform = Transform3D(0.996918, 0, -0.0784591, 0, 1, 0, 0.0784591, 0, 0.996918, 0, 0, 0)
 script = ExtResource("5_8xfyb")
 material = SubResource("ShaderMaterial_g71iy")
 points = PackedVector3Array(0, 0, -210, 0, 0, -390)
 
 [node name="AttackPlaneDirRight2" type="Node3D" parent="1500m"]
-transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0)
+transform = Transform3D(0.987689, 0, -0.156435, 0, 1, 0, 0.156435, 0, 0.987689, 0, 0, 0)
 script = ExtResource("5_8xfyb")
 material = SubResource("ShaderMaterial_g71iy")
 points = PackedVector3Array(0, 0, -210, 0, 0, -390)
 
-[node name="JetDirLeft4" type="Node3D" parent="1500m"]
-transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, 0, 0)
-script = ExtResource("5_8xfyb")
-material = SubResource("ShaderMaterial_g71iy")
-points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+[node name="1500mJet" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, -31.6, -1500)
 
-[node name="JetDirLeft3" type="Node3D" parent="1500m"]
-transform = Transform3D(0.991445, 0, 0.130526, 0, 1, 0, -0.130526, 0, 0.991445, 0, 0, 0)
-script = ExtResource("5_8xfyb")
-material = SubResource("ShaderMaterial_g71iy")
-points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+[node name="JetLeadRight" parent="1500mJet" instance=ExtResource("3_68l75")]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 0, 0, 0)
+script = ExtResource("4_jm7pn")
+iter_min_dist = 0.5
+uv_size = 0.5
+material = SubResource("ShaderMaterial_ru4q3")
 
-[node name="JetDirLeft2" type="Node3D" parent="1500m"]
-transform = Transform3D(0.996195, 0, 0.0871557, 0, 1, 0, -0.0871557, 0, 0.996195, 0, 0, 0)
-script = ExtResource("5_8xfyb")
-material = SubResource("ShaderMaterial_g71iy")
-points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+[node name="JetLeadLeft" parent="1500mJet" instance=ExtResource("3_68l75")]
+transform = Transform3D(-10, -1.50996e-06, 6.60024e-14, 0, -4.37114e-07, -10, 1.50996e-06, -10, 4.37114e-07, 0, 0, 0)
+script = ExtResource("4_jm7pn")
+iter_min_dist = 0.5
+uv_size = 0.5
+material = SubResource("ShaderMaterial_ru4q3")
 
-[node name="JetDirLeft1" type="Node3D" parent="1500m"]
-transform = Transform3D(0.999048, 0, 0.0436194, 0, 1, 0, -0.0436194, 0, 0.999048, 0, 0, 0)
+[node name="JetDirLeft4" type="Node3D" parent="1500mJet"]
+transform = Transform3D(0.990268, 0, 0.139173, 0, 1, 0, -0.139173, 0, 0.990268, 0, 0, 0)
 script = ExtResource("5_8xfyb")
 material = SubResource("ShaderMaterial_g71iy")
-points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+points = PackedVector3Array(0, 0, -650, 0, 0, -1500)
 
-[node name="JetDirStraight" type="Node3D" parent="1500m"]
+[node name="JetDirLeft3" type="Node3D" parent="1500mJet"]
+transform = Transform3D(0.994522, 0, 0.104528, 0, 1, 0, -0.104528, 0, 0.994522, 0, 0, 0)
 script = ExtResource("5_8xfyb")
 material = SubResource("ShaderMaterial_g71iy")
-points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+points = PackedVector3Array(0, 0, -650, 0, 0, -1500)
 
-[node name="JetDirRight1" type="Node3D" parent="1500m"]
-transform = Transform3D(0.999048, 0, -0.0436194, 0, 1, 0, 0.0436194, 0, 0.999048, 0, 0, 0)
+[node name="JetDirLeft2" type="Node3D" parent="1500mJet"]
+transform = Transform3D(0.997564, 0, 0.0697565, 0, 1, 0, -0.0697565, 0, 0.997564, 0, 0, 0)
 script = ExtResource("5_8xfyb")
 material = SubResource("ShaderMaterial_g71iy")
-points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+points = PackedVector3Array(0, 0, -650, 0, 0, -1500)
 
-[node name="JetDirRight2" type="Node3D" parent="1500m"]
-transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 0, 0, 0)
+[node name="JetDirLeft1" type="Node3D" parent="1500mJet"]
+transform = Transform3D(0.999391, 0, 0.0348995, 0, 1, 0, -0.0348995, 0, 0.999391, 0, 0, 0)
 script = ExtResource("5_8xfyb")
 material = SubResource("ShaderMaterial_g71iy")
-points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+points = PackedVector3Array(0, 0, -650, 0, 0, -1500)
 
-[node name="JetDirRight3" type="Node3D" parent="1500m"]
-transform = Transform3D(0.991445, 0, -0.130526, 0, 1, 0, 0.130526, 0, 0.991445, 0, 0, 0)
+[node name="JetDirStraight" type="Node3D" parent="1500mJet"]
 script = ExtResource("5_8xfyb")
 material = SubResource("ShaderMaterial_g71iy")
-points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+points = PackedVector3Array(0, 0, -650, 0, 0, -1500)
 
-[node name="JetDirRight4" type="Node3D" parent="1500m"]
-transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0)
+[node name="JetDirRight1" type="Node3D" parent="1500mJet"]
+transform = Transform3D(0.999391, 0, -0.0348995, 0, 1, 0, 0.0348995, 0, 0.999391, 0, 0, 0)
 script = ExtResource("5_8xfyb")
 material = SubResource("ShaderMaterial_g71iy")
-points = PackedVector3Array(0, 0, -466.7, 0, 0, -866.7)
+points = PackedVector3Array(0, 0, -650, 0, 0, -1500)
+
+[node name="JetDirRight2" type="Node3D" parent="1500mJet"]
+transform = Transform3D(0.997564, 0, -0.0697565, 0, 1, 0, 0.0697565, 0, 0.997564, 0, 0, 0)
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -650, 0, 0, -1500)
+
+[node name="JetDirRight3" type="Node3D" parent="1500mJet"]
+transform = Transform3D(0.994522, 0, -0.104528, 0, 1, 0, 0.104528, 0, 0.994522, 0, 0, 0)
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -650, 0, 0, -1500)
+
+[node name="JetDirRight4" type="Node3D" parent="1500mJet"]
+transform = Transform3D(0.990268, 0, -0.139173, 0, 1, 0, 0.139173, 0, 0.990268, 0, 0, 0)
+script = ExtResource("5_8xfyb")
+material = SubResource("ShaderMaterial_g71iy")
+points = PackedVector3Array(0, 0, -650, 0, 0, -1500)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 light_bake_mode = 0
