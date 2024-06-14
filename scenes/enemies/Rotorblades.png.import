@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b74dj7twedghw"
-path.s3tc="res://.godot/imported/chess_texture.png-be1f35a46c96f4bad887d5dfdf5910c7.s3tc.ctex"
+uid="uid://dm60kg0xieu4k"
+path.s3tc="res://.godot/imported/Rotorblades.png-c308f997177ce125a066e4dc972f39f2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://scenes/scenario/chess_texture.png"
-dest_files=["res://.godot/imported/chess_texture.png-be1f35a46c96f4bad887d5dfdf5910c7.s3tc.ctex"]
+source_file="res://scenes/enemies/Rotorblades.png"
+dest_files=["res://.godot/imported/Rotorblades.png-c308f997177ce125a066e4dc972f39f2.s3tc.ctex"]
 
 [params]
 
