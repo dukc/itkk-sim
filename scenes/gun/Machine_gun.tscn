@@ -128,7 +128,7 @@ skeleton = NodePath("../pistol")
 [node name="pistol" type="Pistol" parent="Pivot"]
 cycleTime = 0.08
 ammoSpace = 50
-reloadTime = 5.0
+reloadTime = 10.0
 ballVelocity = 825.0
 tracerVelocity = 840.0
 ballPath = "res://scenes/bullets/Ball.tscn"
@@ -156,27 +156,48 @@ one_shot = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 
 [node name="HUD" type="HUD" parent="."]
+top_level = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_top = -81.0
+offset_right = 95.0
 grow_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="DistanceLabel" type="Label" parent="HUD/VBoxContainer"]
+layout_mode = 2
+text = "Etäisyys: 0m"
 
 [node name="AmmoLabel" type="Label" parent="HUD/VBoxContainer"]
 layout_mode = 2
-text = "Ammo: 0"
+text = "Laukauksia: 50"
 
 [node name="ProgressBar" type="ProgressBar" parent="HUD/VBoxContainer"]
 layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -180.0
+offset_bottom = 40.0
+grow_horizontal = 0
+text = "Päätä tehtävä"
+
+[node name="DistanceSensor" type="DistanceSensor" parent="."]
 
 [connection signal="fire" from="Pivot/pistol" to="Pivot/pistol/AudioEffect" method="play" unbinds=1]
 [connection signal="s_ammo" from="Pivot/pistol" to="HUD" method="_on_pistol_s_ammo"]
 [connection signal="s_reload" from="Pivot/pistol" to="HUD" method="_on_pistol_s_reload"]
 [connection signal="timeout" from="Pivot/pistol/Timer" to="Pivot/pistol" method="_on_timer_timeout"]
 [connection signal="timeout" from="Pivot/pistol/ReloadTimer" to="Pivot/pistol" method="_on_reloadtimer_timeout"]
+[connection signal="s_reportDistance" from="DistanceSensor" to="HUD" method="_update_distance"]

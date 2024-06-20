@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvcc2a72n30tq"]
+
+[ext_resource type="Environment" uid="uid://sg6i4nj7mk8f" path="res://default_env.tres" id="1_rch7r"]
+[ext_resource type="PackedScene" uid="uid://chr4td8x3n34f" path="res://scenes/scenarios/Environment.tscn" id="2_4acsq"]
+[ext_resource type="PackedScene" uid="uid://bfmupaalbwuqy" path="res://scenes/gun/Machine_gun.tscn" id="3_cwx2u"]
+[ext_resource type="PackedScene" uid="uid://b3elhqehtgtdk" path="res://scenes/sightpicture/SightPicture.tscn" id="5_g840g"]
+[ext_resource type="PackedScene" uid="uid://dwtdfnwt5slns" path="res://scenes/enemies/Helicopter.tscn" id="6_rjo5r"]
+
+[sub_resource type="World3D" id="World3D_aqcyw"]
+
+[node name="Scenario" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_rch7r")
+
+[node name="Environment" parent="." instance=ExtResource("2_4acsq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Player" parent="." instance=ExtResource("3_cwx2u")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 1)
+
+[node name="Camera3D" parent="Player/Pivot" index="0"]
+cull_mask = 1047553
+environment = null
+current = true
+
+[node name="pistol" parent="Player/Pivot" index="4"]
+envPath = NodePath("../../../Environment")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+world_3d = SubResource("World3D_aqcyw")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="SightPicture" parent="SubViewportContainer/SubViewport" instance=ExtResource("5_g840g")]
+
+[node name="CameraZoomer" type="CameraZoomer" parent="."]
+choices = PackedFloat64Array(35, 29, 24, 20, 17, 14, 12, 10.5)
+choiceI = 2
+
+[node name="MouseCapturer" type="MouseCapturer" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.275637, 0.24555, 0.92937, 0, 0.966823, -0.255446, -0.961262, 0.0704104, 0.266493, 0, 76.1883, 15.4714)
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_bake_mode = 0
+
+[node name="Helicopter A" parent="." instance=ExtResource("6_rjo5r")]
+transform = Transform3D(1, 0, 0, 0, -0.0697565, -0.997564, 0, 0.997564, -0.0697565, -250, 2500, 75)
+linear_velocity = Vector3(0, -60, 0)
+
+[node name="GPS" type="GPS" parent="Helicopter A"]
+
+[node name="Helicopter B" parent="." instance=ExtResource("6_rjo5r")]
+transform = Transform3D(1, 0, 0, 0, -0.0697565, -0.997564, 0, 0.997564, -0.0697565, -200, 2900, 85)
+linear_velocity = Vector3(0, -60, 0)
+
+[node name="Helicopter C" parent="." instance=ExtResource("6_rjo5r")]
+transform = Transform3D(1, 0, 0, 0, -0.0697565, -0.997564, 0, 0.997564, -0.0697565, -150, 3300, 95)
+linear_velocity = Vector3(0, -60, 0)
+
+[node name="Helicopter D" parent="." instance=ExtResource("6_rjo5r")]
+transform = Transform3D(1, 0, 0, 0, -0.0697565, -0.997564, 0, 0.997564, -0.0697565, -100, 3700, 105)
+linear_velocity = Vector3(0, -60, 0)
+
+[node name="SceneSwitcher" type="SceneSwitcher" parent="."]
+
+[node name="Out" type="MissionResult" parent="SceneSwitcher"]
+targetNames = PackedStringArray("1. HeKo (Nop 60m/s Kork 75m)", "2. HeKo (Nop 60m/s Kork 85m)", "3. HeKo (Nop 60m/s Kork 95m)", "4. HeKo (Nop 60m/s Kork 105m)")
+
+[connection signal="fire" from="Player/Pivot/pistol" to="SceneSwitcher/Out" method="register_shot" unbinds=1]
+[connection signal="button_down" from="Player/HUD/QuitButton" to="SceneSwitcher" method="_switch_to" binds= ["Report"]]
+[connection signal="s_zoom" from="CameraZoomer" to="Player/Pivot/Camera3D" method="set_perspective" binds= [0.25, 10000.0]]
+[connection signal="s_zoom" from="CameraZoomer" to="SubViewportContainer/SubViewport/SightPicture" method="set_perspective" binds= [10.0, 4000.0]]
+[connection signal="body_entered" from="Helicopter A" to="SceneSwitcher/Out" method="register_hit" binds= [0]]
+[connection signal="s_reportPosition" from="Helicopter A/GPS" to="Player/DistanceSensor" method="measure_distance"]
+[connection signal="body_entered" from="Helicopter B" to="SceneSwitcher/Out" method="register_hit" binds= [1]]
+[connection signal="body_entered" from="Helicopter C" to="SceneSwitcher/Out" method="register_hit" binds= [2]]
+[connection signal="body_entered" from="Helicopter D" to="SceneSwitcher/Out" method="register_hit" binds= [3]]
+
+[editable path="Player"]
+[editable path="Helicopter A"]

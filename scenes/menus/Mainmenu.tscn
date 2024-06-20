@@ -1,0 +1,158 @@
+[gd_scene load_steps=5 format=3 uid="uid://b05sn5yohi3yl"]
+
+[ext_resource type="Texture2D" uid="uid://c0nlm1l5j18ti" path="res://icon_fpc.PNG" id="1_byr3x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gvvhc"]
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_so7pa"]
+font_size = 54
+font_color = Color(0.439216, 1, 0.447059, 1)
+outline_size = 2
+outline_color = Color(0, 0, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tvhyq"]
+font_size = 54
+font_color = Color(0.760784, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 1, 1)
+
+[node name="Mainmenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButtonHelicopters" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -378.0
+offset_top = -301.0
+offset_right = 379.0
+offset_bottom = -212.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="StartButtonHelicopters"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -18.0
+offset_right = 102.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Aloita 1. tehtävä
+"
+label_settings = SubResource("LabelSettings_gvvhc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButtonPlanes" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -378.0
+offset_top = -203.0
+offset_right = 379.0
+offset_bottom = -114.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="StartButtonPlanes"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -18.0
+offset_right = 102.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Aloita 2. tehtävä"
+label_settings = SubResource("LabelSettings_gvvhc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -377.0
+offset_top = -106.0
+offset_right = 380.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="QuitButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -18.0
+offset_right = 43.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lopeta"
+label_settings = SubResource("LabelSettings_gvvhc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SceneSwitcher" type="SceneSwitcher" parent="."]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 33.0
+offset_top = 33.0
+offset_right = 691.0
+offset_bottom = 110.0
+text = "12,7mm ITKK 96"
+label_settings = SubResource("LabelSettings_so7pa")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 109.0
+offset_right = 690.0
+offset_bottom = 186.0
+text = "simulaattori"
+label_settings = SubResource("LabelSettings_tvhyq")
+
+[node name="MainPicture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.55
+anchor_right = 1.0
+anchor_bottom = 0.55
+grow_horizontal = 0
+texture = ExtResource("1_byr3x")
+expand_mode = 3
+stretch_mode = 5
+
+[connection signal="button_down" from="StartButtonHelicopters" to="SceneSwitcher" method="_switch_to" binds= ["Helicopters"]]
+[connection signal="button_down" from="StartButtonPlanes" to="SceneSwitcher" method="_switch_to" binds= ["Planes"]]
+[connection signal="button_down" from="QuitButton" to="SceneSwitcher" method="_quit"]
