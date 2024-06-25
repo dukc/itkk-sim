@@ -7,8 +7,7 @@ class HUD : GodotScript!Control
    @OnReady!"VBoxContainer/ProgressBar" ProgressBar ammoBar;
 
    @Method _ready()
-   {  import std.conv;
-      if (Engine.isEditorHint()) return;
+   {  if (Engine.isEditorHint()) return;
 
          // getParent.getNode(gs!"Arm/Hand/Pistol").get(gs!"max_bullet")));
       ammoBar.value = 100;
