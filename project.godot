@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="First_Person_Character"
+config/name="ITKK-simulaattori"
 run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.2")
 config/icon="res://icon_fpc.PNG"
