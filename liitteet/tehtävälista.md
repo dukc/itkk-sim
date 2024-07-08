@@ -9,10 +9,11 @@
  - Päävalikko kaipaa hieman koristelua, ja toimivan lopetustoiminnon.
  - Mahdollisuus lopettaa tehtävä, saada raportti ammutuista laukauksista ja osumista eri maaleihin.
  - Jokin alkeellinen vihje vihollisen etäisyydestä ja lähestymissuunnasta.
+ - Julkaisukuntoon pakkaaminen, Windowsille ja Linuxille.
 
 ## Tehtävä esittelykuntoon saamiseksi
+ Valmis! Sen kun esittelee.
  
- - Julkaisukuntoon pakkaaminen, Windowsille ja Linuxille.
  
 ## Tärkeimmän oloiset asiat ensiesittelyn jälkeen
 

@@ -5,3 +5,8 @@ copyright "Copyright © 2020, Ate Eskola"
 license "proprietary"
 targetType "dynamicLibrary"
 dependency "godot-dlang" version="~>0.6.0"
+configuration "default" {
+}
+
+# dflags "-L-Lldc2-1.34.0-windows-x64/lib" "-L-Lldc2-1.34.0-windows-x64/lib/mingw" "-v" system="windows"
+dflags "-dllimport=none" "--link-defaultlib-shared=false" system="windows"

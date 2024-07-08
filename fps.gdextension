@@ -7,5 +7,5 @@ compatibility_minimum = "4.1"
 
 linux.debug.x86_64 = "res://libfps-godot-modules.so"
 linux.release.x86_64 = "res://libfps-godot-modules-release.so"
-windows.debug.x86_64 = "res://libfps-godot-modules.dll"
-windows.release.x86_64 = "res://libfps-godot-modules-release.dll"
+windows.debug.x86_64 = "res://fps-godot-modules.dll"
+windows.release.x86_64 = "res://fps-godot-modules-release.dll"
