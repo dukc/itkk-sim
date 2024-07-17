@@ -2,9 +2,9 @@
 
 Tämä on käyttöopas Eskolan Koodipajan tuottamaan vapaasti levitettävään ilmatorjuntakonekiväärisimulaattoriin.
 
-Simuloitu ase on Suomen puolustusvoimien käyttämä ilmatorjuntakonekivääri, tyyppinimeltään 12,7 ITKK 96 NSV. Kyseinen ase on lähes joka yksikön käyttämä lähipuolustusase matalalla lentäviä viholliskoneita, erityisesti helikoptereita vastaan. Se soveltuu myös maamaaleja, varsinkin ajoneuvoja vastaan. Luodit läpäisevät noin 20mm panssaria, ja niissä on leimahduspanos joka on tarkoitettu systyttämään osuman saaneen vihollisen ammukset tai polttoaineen. Itse ase on venäläisvalmisteinen, mutta siinä käytetty heijastintähtäin on länsivalmisteinen. Myös suomessa käytetty jalustaratkaisu on eri kuin alkuperäinen, ollen raskaampi ja useammasta osasta koostuva mutta vakaampi.
+Simuloitu ase on Suomen puolustusvoimien käyttämä ilmatorjuntakonekivääri, tyyppinimeltään 12,7 ITKK 96 NSV. Kyseinen ase on lähes joka yksikön käyttämä lähipuolustusase matalalla lentäviä viholliskoneita, erityisesti helikoptereita vastaan. Se soveltuu myös maamaaleja, varsinkin ajoneuvoja vastaan. Luodit läpäisevät noin 20mm panssaria, ja niissä on leimahduspanos joka on tarkoitettu sytyttämään osuman saaneen vihollisen ammukset tai polttoaineen. Itse ase on venäläisvalmisteinen, mutta siinä käytetty heijastintähtäin on länsivalmisteinen. Myös suomessa käytetty jalustaratkaisu on eri kuin alkuperäinen, ollen raskaampi ja useammasta osasta koostuva mutta vakaampi ja paremmin ilmatorjuntaan soveltuva.
 
-Simulaattori itse on tarkoitettu tähtäimen käytön opettelemiseen. Puolustusvoimilla on käytössään oma simulaattori, AMSI 12,7, joka koostuu oikeaan ilmatorjuntakonekivääriin asennettavista suuntausanturista ja tähtäimen paikalla olevasta näyttöruudusta. Kyseinen simulaattori on sinänsä erinomainen, mutta vaatii ilmatorjuntakonekiväärin ja simulaattorilaitteiston (ja luvan niiden käyttöön!). Tämä simulaattori sen sijaan ei tarvitse muuta kuin tavallisen pöytätietokoneen tai läppärin, ja se on vapaasti kopioitavissa niin monelle laitteelle kuin tarvetta on.
+Simulaattori itse on tarkoitettu tähtäimen käytön opettelemiseen. Puolustusvoimilla on käytössään oma simulaattori, AMSI 12,7, joka koostuu oikeaan ilmatorjuntakonekivääriin asennettavista suuntausanturista ja tähtäimen paikalla olevasta pienestä näyttöruudusta. Kyseinen simulaattori on sinänsä erinomainen, mutta vaatii ilmatorjuntakonekiväärin ja simulaattorilaitteiston (ja luvan niiden käyttöön!). Tämä simulaattori sen sijaan ei tarvitse muuta kuin tavallisen pöytätietokoneen tai läppärin, ja se on MIT-lisenssillä vapaasti kopioitavissa niin monelle laitteelle kuin tarvetta on.
 
 ## Simulaattorin käyttö
 
@@ -40,3 +40,13 @@ Ammusilmatorjunnassa käytetään yleensä valojuovapatruunoita, eikä tämä si
 
 Periaattessa paras tapa osua on että aseella pidetään koko ajan sillä hetkellä oikea ennakko ja etäisyyskorotus, jolloin tulituksen pitäisi olla koko ajan suunassa. Varsinkin nopeammille maaleille tämä voi kuitenkin olla epärealistisen vaikeaa, jolloin käytännössä on tehokkaampaa ampua sulkutulta. Tämä tarkoittaa sitä, että otetaan tarkoituksella ylipitkä ennakko, ja ammutaan kyseiseen pisteeseen pitkä sarja liikuttamatta asetta sarjan aikana. Tuloksena viholliskone lentää ammutun sarjan läpi, ja hyvällä todennäköisyydellä saa osuman tai pari.
 
+## Kiitokset
+
+ - Simulaattori käyttää [Godot 4](https://godotengine.org) - pelimoottoria
+ - Tehty Godot-3 projektimallin [First-person Character](https://godotengine.org/asset-library/asset/305) pohjalta.
+ - Ohjelmointi tehty lähes täysin [D-kielellä](https://dlang.org), käyttäen [Godot-Dlang-kirjastoa](https://code.dlang.org/packages/godot-dlang)
+ - Ilmatorjuntamiehen käsikirja 2016
+ - Wikimedia commonsin [kuvista aiheesta](https://commons.wikimedia.org/wiki/Category:NSV_in_Finnish_service) ovat peräisin sekä takaisinmallinnukseen käyttämäni heijastintähtäinkuvat että kuvake/päävalikkokuva aseesta.
+ - Varusmiespalvelukseni jääkärijoukkueen ITKK-ampujana Kainuun prikaatissa 2012. Vaikka kaikki "raaka" tieto löytyy julkisista lähteistä ainakin merkittäviltä osiltaan, ei minulla olisi kokonaiskuvaa aseesta ilman koulutusta.
+ - Maanpuolustuskoulutusyhdistyksen ilmatorjuntakurssi jonka olen käynyt 2-3 kertaa kerratakseni ja täydentääkseni tätä kokonaiskuvaa.
+ - Puolustusvoimien simulaattori AMSI 12,7. En tietenkään ole voinut kopioida siitä mitään omaani, mutta muistikuvienkin varassa välittyy ideoita. 
