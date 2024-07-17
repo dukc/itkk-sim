@@ -147,6 +147,7 @@ text = "simulaattori"
 label_settings = SubResource("LabelSettings_tvhyq")
 
 [node name="Label3" type="Label" parent="."]
+layout_mode = 0
 offset_left = 29.0
 offset_top = 188.0
 offset_right = 687.0
