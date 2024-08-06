@@ -1,6 +1,14 @@
-Lue `liitteet/käyttöopas.md` yleistietoa ja itse käyttöä varten
+# 12,7mm ITKK 96 pöytäkonesimulaattori
+
+Tämä on [Eskolan Koodipajan](https://koodipaja.ate-eskola.fi) tuottama vapaasti levitettävä ilmatorjuntakonekiväärisimulaattori. Soveltuu tähtäimen käytön ja ennakon arvoinnin harjoitteluun.
+
+![](liitteet/kuvakaappaus.png)
+
+Lue [`liitteet/käyttöopas.md`](liitteet/käyttöopas.md) yleistietoa ja itse käyttöä varten
 
 Koostamis - ja jakeluohjeet kirjoitettu Linuxin näkökulmasta. Windowsilla koostamisenkin pitäisi onnistua, mutta joudut selvittämään itse miten.
+
+Aion laittaa valmiit binäärit ladattavaksi ihan pian, sitten ei tarvitse itse koostaa!
 
 ## Koostaminen
 
