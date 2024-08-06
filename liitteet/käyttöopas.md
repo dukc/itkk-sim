@@ -22,9 +22,9 @@ Jos/kun osut viholliseen, huomaat sen luodin sytytyspanoksen aiheuttamasta leima
  2. 500 metrin tähtäin. Pystyviivat kertovat ennakon 20 tai 40 km/h sivuttain etenevään maaliin
  3. 1000m tähtäin
  4. 1500m tähtäin
- 5. Ennakkokäyrä lähestyvälle ilmamaalille, jolla lentokorkeus 100m/s ja nopeus 187.5km/h, etäisyys luodin kohdatessa 1500m
- 6. Ennakkokäyrä lähestyvälle ilmamaalille, jolla lentokorkeus 100m/s ja nopeus 375km/h, etäisyys luodin kohdatessa 1500m. Huomaa suunta-apuviivat - Lentokonee on lentämässä kohti ennakkopistettä mikäli suuntaviiva kulkee sen rungon mukaisesti.
- 7. Ennakkokäyrä lähestyvälle ilmamaalille, jolla lentokorkeus 100m/s ja nopeus 1250km/h (noin 1 mach), etäisyys luodin kohdatessa 1500m. Huomaa suunta-apuviivat.
+ 5. Ennakkokäyrä lähestyvälle ilmamaalille, jolla lentokorkeus 100m ja nopeus 187.5km/h, etäisyys luodin kohdatessa 1500m
+ 6. Ennakkokäyrä lähestyvälle ilmamaalille, jolla lentokorkeus 100m ja nopeus 375km/h, etäisyys luodin kohdatessa 1500m. Huomaa suunta-apuviivat - Lentokonee on lentämässä kohti ennakkopistettä mikäli suuntaviiva kulkee sen rungon mukaisesti.
+ 7. Ennakkokäyrä lähestyvälle ilmamaalille, jolla lentokorkeus 100m ja nopeus 1250km/h (noin 1 mach), etäisyys luodin kohdatessa 1500m. Huomaa suunta-apuviivat.
  
 Ennakkokäyrän virallinen tulkinta poikkeaa näistä (viralliset arvot ovat 150m maalikorkeus ja suurimman käyrän maalinopeus 835km/h). Uskon kuitenkin, mittailtuani valokuvaa oikeasta tähtäimestä sen takaisinmallinnusta varten tähän simulaattoriin, että viralliset arvot ovat virheellisiä. Simulaattorin tähtäin toimii yllä luetellulla tulkinnalla ja niin luullakseni myös aito tähtäin.
 
