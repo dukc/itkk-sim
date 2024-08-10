@@ -8,7 +8,9 @@ Lue [`liitteet/käyttöopas.md`](liitteet/käyttöopas.md) yleistietoa ja itse k
 
 Koostamis - ja jakeluohjeet kirjoitettu Linuxin näkökulmasta. Windowsilla koostamisenkin pitäisi onnistua, mutta joudut selvittämään itse miten.
 
-Aion laittaa valmiit binäärit ladattavaksi ihan pian, sitten ei tarvitse itse koostaa!
+## Lataaminen
+
+Oleattaen, että luet tätä GitHubissa, voit poimia omasi oikealta "releases" - otsikon alta. Binäärit saatavilla Windowsille ja Linuxille, laitearkkitehtuuri X86_64. Pura sisältö arkistointisovelluksella minne tahansa ja aja sovellus sisältä. Saatat joutua säätämään virustorjuntaohjelmaasi ettei se estä ohjelman suorittamista. Myös kopio käyttöoppasta tulee mukana arkiston sisällä.
 
 ## Koostaminen
 
