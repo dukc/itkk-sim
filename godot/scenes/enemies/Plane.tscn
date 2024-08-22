@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsowffcqxrhn7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1sra1"]
+albedo_color = Color(0.211765, 0.235294, 0.0588235, 1)
+metallic = 0.3
+
+[sub_resource type="CapsuleMesh" id="1"]
+radius = 1.5
+height = 12.0
+radial_segments = 12
+
+[sub_resource type="BoxMesh" id="2"]
+size = Vector3(12, 0.15, 2)
+
+[sub_resource type="CapsuleShape3D" id="3"]
+radius = 1.5
+height = 12.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qoa83"]
+radial_segments = 8
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7vf7q"]
+top_radius = 0.15
+bottom_radius = 0.15
+height = 3.0
+radial_segments = 6
+
+[node name="AttackPlane" type="RigidBody3D"]
+collision_mask = 0
+mass = 5000.0
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_1sra1")
+cast_shadow = 0
+mesh = SubResource("1")
+
+[node name="Wings" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.547566)
+material_override = SubResource("StandardMaterial3D_1sra1")
+cast_shadow = 0
+mesh = SubResource("2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("3")
+
+[node name="PortEngine" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, 1.51004, 1.62887, -3.01563)
+material_override = SubResource("StandardMaterial3D_1sra1")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_qoa83")
+
+[node name="StarboardEngine" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, -1.51, 1.629, -3.016)
+material_override = SubResource("StandardMaterial3D_1sra1")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_qoa83")
+
+[node name="Munition1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, 2.82936, 0.253855, 0.480346)
+material_override = SubResource("StandardMaterial3D_1sra1")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_7vf7q")
+
+[node name="Munition2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, 3.78699, 0.253855, 0.480346)
+material_override = SubResource("StandardMaterial3D_1sra1")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_7vf7q")
+
+[node name="Munition3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, 4.84668, 0.253855, 0.480346)
+material_override = SubResource("StandardMaterial3D_1sra1")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_7vf7q")
+
+[node name="Munition4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, -2.829, 0.254, 0.48)
+material_override = SubResource("StandardMaterial3D_1sra1")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_7vf7q")
+
+[node name="Munition5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, -3.787, 0.254, 0.48)
+material_override = SubResource("StandardMaterial3D_1sra1")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_7vf7q")
+
+[node name="Munition6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, -4.847, 0.254, 0.48)
+material_override = SubResource("StandardMaterial3D_1sra1")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_7vf7q")

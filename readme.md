@@ -18,15 +18,15 @@ Tarvitset Godot 4 - pelimoottorin, D-kääntäjän ja D:n pakettienhallinnan, DU
 
 Käännä D-scriptit projektista: 
 ```
-(cd dlang && dub build) && cp dlang/libfps-godot-modules.so ./libfps-godot-modules.s
+(cd dlang && dub build) && cp dlang/libfps-godot-modules.so ./godot/libfps-godot-modules.so
 ```
 
 Tai, jos julkaisuversiota haluat koostaa:
 ```
-(cd dlang && dub build --build=release) && cp dlang/libfps-godot-modules.so ./libfps-godot-modules-release.so
+(cd dlang && dub build --build=release) && cp dlang/libfps-godot-modules.so ./godot/libfps-godot-modules-release.so
 ```
 
-Avaa projekti Godotilla ja työstä/aja kuten normaalisti.
+Avaa projekti `godot`-kansiossa Godotilla ja työstä/aja kuten normaalisti.
 
 ## Jakeluversion tekeminen
 
@@ -36,7 +36,7 @@ Jos olet viemässä Windowsille, D-skriptit pitää kääntää dll-tiedostoksi 
 
 Kun ristiinkääntö toimii,
 ```
-(cd dlang && dub build --build=release --compiler=ldc2 --arch=x86_64-unknown-windows-msvc) && cp dlang/fps-godot-modules.dll ./fps-godot-modules-release.dll
+(cd dlang && dub build --build=release --compiler=ldc2 --arch=x86_64-unknown-windows-msvc) && cp dlang/fps-godot-modules.dll ./godot/fps-godot-modules-release.dll
 ```
 .
 

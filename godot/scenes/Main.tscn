@@ -1,0 +1,10 @@
+[gd_scene load_steps=5 format=3 uid="uid://2tsqanjtsob2"]
+
+[ext_resource type="PackedScene" uid="uid://b05sn5yohi3yl" path="res://scenes/menus/Mainmenu.tscn" id="1_a3iql"]
+[ext_resource type="PackedScene" uid="uid://dvcc2a72n30tq" path="res://scenes/scenarios/Helicopters.tscn" id="1_yvp4b"]
+[ext_resource type="PackedScene" uid="uid://cv66jln7qjm43" path="res://scenes/scenarios/Planes.tscn" id="2_imc6f"]
+[ext_resource type="PackedScene" uid="uid://jersjkuc0j18" path="res://scenes/menus/Report.tscn" id="4_gaqoi"]
+
+[node name="Main" type="MainScene"]
+firstSceneName = "Mainmenu"
+resources = [PackedStringArray("Helicopters", "Mainmenu", "Planes", "Report"), [ExtResource("1_yvp4b"), ExtResource("1_a3iql"), ExtResource("2_imc6f"), ExtResource("4_gaqoi")]]
