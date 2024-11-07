@@ -15,6 +15,8 @@ class Pistol : GodotScript!Node3D
    @Property @DefaultValue!(1.0) float reloadTime;
    @Property @DefaultValue!(1.0) float ballVelocity;
    @Property @DefaultValue!(1.0) float tracerVelocity;
+   @Property Vector3 ballDispersion;
+   @Property Vector3 tracerDispersion;
    @Property @DefaultValue!(gs!"res://") String ballPath;
    @Property @DefaultValue!(gs!"res://") String tracerPath;
    @Property NodePath envPath;
@@ -58,7 +60,9 @@ class Pistol : GodotScript!Node3D
    {  if (Engine.isEditorHint()) return;
 
       if(triggerPressed && cycled && ammo)
-      {  import std.algorithm, std.array, std.conv;
+      {  import std.algorithm, std.array, std.conv, std.functional, std.range;
+         import std.mathspecial : normalDistributionInverse;
+         import std.random : uniform;
          import godot.node3d, godot.rigidbody3d;
 
          ammo--;
@@ -71,7 +75,17 @@ class Pistol : GodotScript!Node3D
             .map!(el=>el.z).staticArray!3.Vector3.normalized;
          bullet.position = gunBarrel.globalTransform.origin;
          bullet.lookAt(bullet.position - direction, Vector3(0,1,0));
-         bullet.linearVelocity = direction * [ballVelocity, tracerVelocity][bulletType];
+         bullet.linearVelocity = {
+            auto ideal = direction * [ballVelocity, tracerVelocity][bulletType];
+            auto deviation = [ballDispersion, tracerDispersion][bulletType]
+               .adjoin!(v=>v.x, v=>v.y, v=>v.z)
+               .bind!only
+               .map!(sigma => sigma * float(normalDistributionInverse(
+                  uniform(1, 0x10_0000) / real(0x10_0000))))
+               .staticArray!3
+               .Vector3;
+            return ideal + deviation;
+         }();
          fire(cast(int) bulletType);
          s_ammo(ammo);
          cycled = false;
