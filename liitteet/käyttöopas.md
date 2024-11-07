@@ -6,7 +6,7 @@ Simulaattori itse on tarkoitettu tähtäimen käytön opettelemiseen. Puolustusv
 
 ## Simulaattorin käyttö
 
-Suosittelen suurentamaan ikkunan koko ruudun tai lähes koko ruudun kokoiseksi mutta tämä ei ole välttämätöntä. Valitse tehtävä päävalikosta. Suosittelen tehtävää 1. ensimmäiseksi, koska sen maalit ovat helpompia.
+Suosittelen suurentamaan ikkunan koko ruudun tai lähes koko ruudun kokoiseksi mutta tämä ei ole välttämätöntä. Valitse tehtävä päävalikosta. Suosittelen tehtävää 1. ensimmäiseksi, koska sen maalit ovat helpoimpia.
 
 Kun tehtävä on alkanut, paina enter kaapataksesi hiiren osoittimen (osoitin katoaa ja voit kääntää kameraa ilman että osoitin törmää ruudun laitaan). Saadaksesi osoittimen taas esille (lopettaaksesi tai siirtääksesi ruutua) paina esc.
 
@@ -30,7 +30,7 @@ Ennakkokäyrän virallinen tulkinta poikkeaa näistä (viralliset arvot ovat 150
 
 ## Tehokas ampumatekniikka
 
-Ilmamaalit etenevät yleensä kymmenistä satoihin metrejä sekunnissa (simulaattorissa tällä hetkellä 60 tai 100 m/s), ja ampumaetäisyydet ovat jopa 2 kilometriä, enemmänkin varsinaisilla ilmatorjuntatykeillä. Mikään luoti tai kranaatti ei ole tarpeeksi nopea osuakseen tällaisiin maaleihin ilman huomattavaa etäisyyskorotusta ja vielä suurempaa ennakkoa. Et siis voi vain osoittaa maalia ja painaa laukaisukahvaa. Oikean ennakon ja korotuksen arviointi on avain ilmatorjuntakonekiväärillä osumiseen.
+Ilmamaalit etenevät yleensä kymmenistä satoihin metrejä sekunnissa (simulaattorissa tällä hetkellä 60 - 240 m/s), ja ampumaetäisyydet ovat jopa 2 kilometriä, enemmänkin varsinaisilla ilmatorjuntatykeillä. Mikään luoti tai kranaatti ei ole tarpeeksi nopea osuakseen tällaisiin maaleihin ilman huomattavaa etäisyyskorotusta ja vielä suurempaa ennakkoa. Et siis voi vain osoittaa maalia ja painaa laukaisukahvaa. Oikean ennakon ja korotuksen arviointi on avain ilmatorjuntakonekiväärillä osumiseen.
 
 Aseen tehokas ampumamatka ilmamaaleihin on 1,5 kilometriä. Kun aloitat tehtävän simulaattorissa, vihollismuodostelma on vielä reilusti kauempana kuin tämä. Vaikka voit aloittaa tulituksen heti kun haluat, parhaat mahdollisuudet osua ovat vasta vihollisten ollessa lähempänä. Itse asiassa jopa virallinen 1,5km on pitkänpuolinen etäisyys, usein tehokkain tulitusetäisyys on muutamia tai muutama sata metriä. Katso että vyössä on patruunoita kun vihollinen on tällä etäisyydellä! Aloita tulitus kuitenkin ennen kuin vihollinen on ohittamassa sinua. Vaikka vihollista voi tulittaa sivusta tai takaa, tämä on selvästi tehottomampaa mitä lähestyvän maalin ampuminen. Etäisyysmittari näytön alareunassa auttaa sinua valitsemaan hyvä tulenavaushetken ja arvioimaan tähtäyspisteen jolla aloitat.
 
