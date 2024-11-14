@@ -21,8 +21,7 @@ outline_color = Color(0, 0, 1, 1)
 font_size = 27
 outline_color = Color(0, 0, 1, 1)
 
-[node name="Mainmenu" type="Control"]
-layout_mode = 3
+[node name="Mainmenu" type="MainMenu"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -133,9 +132,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -377.0
+offset_left = 5.0
 offset_top = -106.0
-offset_right = 380.0
+offset_right = 379.0
 offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -198,7 +197,40 @@ texture = ExtResource("1_byr3x")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="SettingsButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -377.0
+offset_top = -106.0
+offset_right = -3.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="SettingsButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -18.0
+offset_right = 43.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Asetukset"
+label_settings = SubResource("LabelSettings_gvvhc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="button_down" from="StartButtonHelicopters" to="SceneSwitcher" method="_switch_to" binds= ["Helicopters"]]
 [connection signal="button_down" from="StartButtonPlanes" to="SceneSwitcher" method="_switch_to" binds= ["Planes"]]
 [connection signal="button_down" from="StartButtonFastPlanes" to="SceneSwitcher" method="_switch_to" binds= ["Fastplanes"]]
 [connection signal="button_down" from="QuitButton" to="SceneSwitcher" method="_quit"]
+[connection signal="button_down" from="SettingsButton" to="SceneSwitcher" method="_switch_to" binds= ["SettingsMenu"]]

@@ -1,10 +1,11 @@
 import airdrag, camerazoomer, distancesensor, gps, hud, report,
-	mainscene, missionresult, mousecapturer, pistol, sceneswitcher, transformer;
+	mainmenu, mainscene, missionresult, missionsettings, mousecapturer,
+	pistol, sceneswitcher, settingsmenu, transformer;
 import godot;
 
 mixin GodotNativeLibrary!
 (	"fps",
 	Airdrag, CameraZoomer, DistanceSensor, GPS, HUD,
-	MainScene, MissionResult, MouseCapturer, Pistol,
-	Report, SceneSwitcher, Transformer
+	MainScene, MainMenu, MissionResult, MissionSettingsNode,
+	MouseCapturer, Pistol, Report, SceneSwitcher, SettingsMenu, Transformer
 );
