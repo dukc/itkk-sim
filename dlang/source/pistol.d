@@ -11,6 +11,7 @@ class Pistol : GodotScript!Node3D
 
    @Property @DefaultValue!false bool triggerPressed;
    @Property @DefaultValue!(1.0) float cycleTime;
+   // 0 tarkoittaa rajatonta vyötä
    @Property @DefaultValue!16 int ammoSpace;
    @Property @DefaultValue!(1.0) float reloadTime;
    @Property @DefaultValue!(1.0) float ballVelocity;
@@ -27,10 +28,13 @@ class Pistol : GodotScript!Node3D
    Ref!PackedScene ballPrefab;
    Ref!PackedScene tracerPrefab;
 
-
-   @Signal @Rename("s_ammo") static void s_ammo2(int b_count);
-   void s_ammo(int b_count){
-      emitSignal("s_ammo", b_count);
+   // Ei jostain syystä toimi jos välittää signaalissa kaksi lukua erikseen
+   // joten arg on kahden 32-bittisen luvun vektori.
+   @Signal @Rename("s_ammo") static void s_ammo2(long arg);
+   void s_ammo(int left, int maxCount)
+   in(left >= 0)
+   in(maxCount >= 0)
+   {  emitSignal("s_ammo", (cast(long) left << 32) + maxCount);
    }
    @Signal @Rename("s_reload") static void s_reload2(float r_delay);
    void s_reload(float r_delay){
@@ -59,13 +63,13 @@ class Pistol : GodotScript!Node3D
    @Method void _physics_process(float delta)
    {  if (Engine.isEditorHint()) return;
 
-      if(triggerPressed && cycled && ammo)
+      if(triggerPressed && cycled && (!ammoSpace || ammo))
       {  import std.algorithm, std.array, std.conv, std.functional, std.range;
          import std.mathspecial : normalDistributionInverse;
          import std.random : uniform;
          import godot.node3d, godot.rigidbody3d;
 
-         ammo--;
+         if(ammoSpace) ammo--;
          cycleTimer.start();
          size_t bulletType = ammo % 3 == 0;
          auto bullet = [ballPrefab, tracerPrefab][bulletType].instantiate()
@@ -87,7 +91,7 @@ class Pistol : GodotScript!Node3D
             return ideal + deviation;
          }();
          fire(cast(int) bulletType);
-         s_ammo(ammo);
+         s_ammo(ammo, ammoSpace);
          cycled = false;
       }
    }
@@ -97,7 +101,7 @@ class Pistol : GodotScript!Node3D
 
       cycled = false;
       ammo = 0;
-      s_ammo(ammo);
+      s_ammo(ammo, ammoSpace);
       s_reload(reloadTime);
       reloadTimer.start();
    }
@@ -117,6 +121,6 @@ class Pistol : GodotScript!Node3D
    @Method void _on_reloadtimer_timeout()
    {  ammo = ammoSpace;
       cycled = true;
-      s_ammo(ammo);
+      s_ammo(ammo, ammoSpace);
    }
 }

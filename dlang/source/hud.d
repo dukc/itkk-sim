@@ -13,9 +13,14 @@ class HUD : GodotScript!Control
       ammoBar.value = 100;
    }
 
-   @Method _on_pistol_s_ammo(int b_count)
+   @Method _on_pistol_s_ammo(long arg)
    {  import std.conv;
-      ammoLabel.text = String(text("Laukauksia: ", b_count));
+
+      auto count = arg >> 32;
+      auto capacity = arg & 0xFFFF_FFFF;
+
+      ammoLabel.text = String(capacity > 0? text("Laukauksia: ",  count): "Laukauksia: ∞");
+      ammoBar.value = capacity > 0? cast(float) count / capacity * 100: 100;
    }
 
    @Method _updateDistance(float distance)

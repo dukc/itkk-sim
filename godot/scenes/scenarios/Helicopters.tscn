@@ -16,6 +16,9 @@ environment = SubResource("Environment_gv6ra")
 
 [node name="Scenario" type="Node3D"]
 
+[node name="ScenarioController" type="ScenarioController" parent="." node_paths=PackedStringArray("gun")]
+gun = NodePath("../Player/Pivot/pistol")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_rch7r")
 
