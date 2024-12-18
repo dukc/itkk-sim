@@ -24,10 +24,7 @@ class Report : GodotScript!Control
         builder ~= "\nOsumia eri maaleihin:\n";
 
         foreach(i; 0 .. data.targetNames.length)
-        {   //godot-dlangissa on kirjoittaessa vika.
-            //PackedStringArrayn elementtityyppi on object.string eikä godot.String,
-            //joten joudumme korjaamaan tyypin tässä.
-            string step1 = text(*cast(String*) &data.targetNames[i]);
+        {   string step1 = text(data.targetNames[i]);
             builder ~= text("   ", step1, ": ", data.hits[i], "\n");
         }
 

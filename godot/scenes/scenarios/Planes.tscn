@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cv66jln7qjm43"]
+[gd_scene load_steps=8 format=3 uid="uid://cv66jln7qjm43"]
 
 [ext_resource type="Environment" uid="uid://sg6i4nj7mk8f" path="res://default_env.tres" id="2_rnf4l"]
 [ext_resource type="PackedScene" uid="uid://chr4td8x3n34f" path="res://scenes/scenarios/Environment.tscn" id="3_v8e33"]
@@ -6,9 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://dsowffcqxrhn7" path="res://scenes/enemies/Plane.tscn" id="5_7vkdm"]
 [ext_resource type="PackedScene" uid="uid://b3elhqehtgtdk" path="res://scenes/sightpicture/SightPicture.tscn" id="6_0mfcs"]
 
+[sub_resource type="Environment" id="Environment_gv6ra"]
+background_energy_multiplier = 0.0
+ambient_light_source = 1
+reflected_light_source = 1
+
 [sub_resource type="World3D" id="World3D_aqcyw"]
+environment = SubResource("Environment_gv6ra")
 
 [node name="Scenario" type="Node3D"]
+
+[node name="ScenarioController" type="ScenarioController" parent="." node_paths=PackedStringArray("gun")]
+gun = NodePath("../Player/Pivot/pistol")
+targets = PackedStringArray("../Plane A/TargetController", "../Plane B/TargetController")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_rnf4l")
@@ -70,7 +80,6 @@ light_bake_mode = 0
 [node name="SceneSwitcher" type="SceneSwitcher" parent="."]
 
 [node name="Out" type="MissionResult" parent="SceneSwitcher"]
-targetNames = PackedStringArray("1. RyKo (Nop 100m/s Kork 150m)", "2. RyKo (Nop 100m/s Kork 250m)")
 
 [connection signal="fire" from="Player/Pivot/pistol" to="SceneSwitcher/Out" method="register_shot"]
 [connection signal="button_down" from="Player/HUD/QuitButton" to="SceneSwitcher" method="_switch_to" binds= ["Report"]]

@@ -72,8 +72,8 @@ size = Vector3(0.949512, 0.872681, 6.69989)
 collision_mask = 0
 mass = 5000.0
 gravity_scale = 0.0
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 
 [node name="Wings" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0.548)
@@ -142,3 +142,5 @@ shape = SubResource("BoxShape3D_4kspt")
 [node name="TailCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.995494, -0.0948259, 0, 0.0948259, 0.995494, -0.118018, 0.303842, -4.69323)
 shape = SubResource("BoxShape3D_yn282")
+
+[node name="TargetController" type="TargetController" parent="."]

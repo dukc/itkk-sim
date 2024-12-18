@@ -16,6 +16,10 @@ environment = SubResource("Environment_gv6ra")
 
 [node name="Scenario" type="Node3D"]
 
+[node name="ScenarioController" type="ScenarioController" parent="." node_paths=PackedStringArray("gun")]
+gun = NodePath("../Player/Pivot/pistol")
+targets = PackedStringArray("../Plane A/TargetController", "../Plane B/TargetController", "../Plane C/TargetController")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_bj6cy")
 
@@ -80,7 +84,6 @@ light_bake_mode = 0
 [node name="SceneSwitcher" type="SceneSwitcher" parent="."]
 
 [node name="Out" type="MissionResult" parent="SceneSwitcher"]
-targetNames = PackedStringArray("1. SuKo (Nop 240m/s Kork 110m)", "2. SuKo (Nop 240m/s Kork 110m)", "3. SuKo (Nop 240m/s Kork 110m)")
 
 [connection signal="fire" from="Player/Pivot/pistol" to="SceneSwitcher/Out" method="register_shot"]
 [connection signal="button_down" from="Player/HUD/QuitButton" to="SceneSwitcher" method="_switch_to" binds= ["Report"]]
