@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://djsa6jldm4kwx"]
+[gd_scene load_steps=7 format=3 uid="uid://djsa6jldm4kwx"]
 
 [ext_resource type="Environment" uid="uid://sg6i4nj7mk8f" path="res://default_env.tres" id="1_bj6cy"]
 [ext_resource type="PackedScene" uid="uid://chr4td8x3n34f" path="res://scenes/scenarios/Environment.tscn" id="2_s8iwk"]
@@ -6,13 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dsowffcqxrhn7" path="res://scenes/enemies/Plane.tscn" id="4_dmtsv"]
 [ext_resource type="PackedScene" uid="uid://b3elhqehtgtdk" path="res://scenes/sightpicture/SightPicture.tscn" id="5_a0od4"]
 
-[sub_resource type="Environment" id="Environment_gv6ra"]
-background_energy_multiplier = 0.0
-ambient_light_source = 1
-reflected_light_source = 1
-
 [sub_resource type="World3D" id="World3D_aqcyw"]
-environment = SubResource("Environment_gv6ra")
 
 [node name="Scenario" type="Node3D"]
 
@@ -41,15 +35,24 @@ envPath = NodePath("../../../Environment")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 100, 5500, 110)
 linear_velocity = Vector3(0, -240, 0)
 
+[node name="TargetController" parent="Plane A" index="11"]
+name = "1. SuKo"
+
 [node name="GPS" type="GPS" parent="Plane A"]
 
 [node name="Plane B" parent="." instance=ExtResource("4_dmtsv")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 140, 6500, 110)
 linear_velocity = Vector3(0, -240, 0)
 
+[node name="TargetController" parent="Plane B" index="11"]
+name = "2. SuKo"
+
 [node name="Plane C" parent="." instance=ExtResource("4_dmtsv")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 180, 7500, 110)
 linear_velocity = Vector3(0, -240, 0)
+
+[node name="TargetController" parent="Plane C" index="11"]
+name = "3. SuKo"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 anchors_preset = 15
@@ -95,3 +98,6 @@ light_bake_mode = 0
 [connection signal="s_zoom" from="CameraZoomer" to="SubViewportContainer/SubViewport/SightPicture" method="set_perspective" binds= [10.0, 4000.0]]
 
 [editable path="Player"]
+[editable path="Plane A"]
+[editable path="Plane B"]
+[editable path="Plane C"]

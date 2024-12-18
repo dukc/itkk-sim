@@ -1,5 +1,6 @@
 import godot, godot.engine, godot.node;
 import missionresult, missionsettings, pistol, targetcontroller, util;
+debug import std.stdio;
 
 import std.conv : text;
 

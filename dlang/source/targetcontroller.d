@@ -2,9 +2,14 @@ import std.format : format;
 import std.math : isNaN;
 import godot, godot.rigidbody3d;
 import missionresult;
+debug import std.stdio;
 
 class TargetController : GodotScript!Node
 {
+    // Käyttäisin emosolmun nimeä mutta ilmaisesti jokin Godotin tai
+    // Godot-dlanging bugi saa aikaan sen että tulee aina tyhjä merkkijono kun
+    // lukee sen (getNode("..").name.toDStringName)
+    @Property String name;
     // MissionResult joka jäljittää tätä maalia.
     MissionResult slot;
     uint id = uint.max;
@@ -28,13 +33,11 @@ class TargetController : GodotScript!Node
     }
 
     void updateSlot()
-    {   debug import std.stdio;
-        auto rigidbody = getNode("..").as!RigidBody3D;
+    {   auto rigidbody = getNode("..").as!RigidBody3D;
         slot.targetNames[id] = String(format!"%s (Nop %dm/s Kork %dm)"
-            (   getNode("..").name.toDStringName,
+            (   name.toDString,
                 cast(int) (rigidbody.linearVelocity.length + .5),
                 cast(int) (rigidbody.position.z + .5)
             ));
-        debug writeln(getNode("..").name.length);
     }
 }

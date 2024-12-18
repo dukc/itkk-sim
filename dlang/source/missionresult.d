@@ -1,6 +1,7 @@
 import std.algorithm, std.conv, std.range;
 import godot, godot.engine, godot.node, godot.rigidbody3d;
 import targetcontroller, util;
+debug import std.stdio;
 
 class MissionResult : GodotScript!Node
 {   TargetController[] targets;
