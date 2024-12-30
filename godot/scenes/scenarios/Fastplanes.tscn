@@ -35,7 +35,7 @@ envPath = NodePath("../../../Environment")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 100, 5500, 110)
 linear_velocity = Vector3(0, -240, 0)
 
-[node name="TargetController" parent="Plane A" index="11"]
+[node name="TargetController" parent="Plane A" index="16"]
 name = "1. SuKo"
 
 [node name="GPS" type="GPS" parent="Plane A"]
@@ -44,14 +44,14 @@ name = "1. SuKo"
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 140, 6500, 110)
 linear_velocity = Vector3(0, -240, 0)
 
-[node name="TargetController" parent="Plane B" index="11"]
+[node name="TargetController" parent="Plane B" index="16"]
 name = "2. SuKo"
 
 [node name="Plane C" parent="." instance=ExtResource("4_dmtsv")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 180, 7500, 110)
 linear_velocity = Vector3(0, -240, 0)
 
-[node name="TargetController" parent="Plane C" index="11"]
+[node name="TargetController" parent="Plane C" index="16"]
 name = "3. SuKo"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]

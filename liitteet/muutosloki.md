@@ -6,6 +6,7 @@
 - Lisätty 3. tehtävä jossa maalit etenevät 240m/s, vastaten suunnilleen suihkukonemaalia.
 - Lisätty asetusvalikko, josta voi säätää vyön pituutta ja muuttaa maalien lentonopeutta oletuksesta.
 - Lisätty tämä muutosloki.
+- Paranneltu lentokoneen ulkonäköä, ja tarkistettu että se vastaa karkeasti oikeiden koneiden mittoja.
 
 ## 0.1.0
 

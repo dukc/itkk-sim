@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvcc2a72n30tq"]
+[gd_scene load_steps=7 format=3 uid="uid://dvcc2a72n30tq"]
 
 [ext_resource type="Environment" uid="uid://sg6i4nj7mk8f" path="res://default_env.tres" id="1_rch7r"]
 [ext_resource type="PackedScene" uid="uid://chr4td8x3n34f" path="res://scenes/scenarios/Environment.tscn" id="2_4acsq"]
@@ -6,13 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b3elhqehtgtdk" path="res://scenes/sightpicture/SightPicture.tscn" id="5_g840g"]
 [ext_resource type="PackedScene" uid="uid://dwtdfnwt5slns" path="res://scenes/enemies/Helicopter.tscn" id="6_rjo5r"]
 
-[sub_resource type="Environment" id="Environment_gv6ra"]
-background_energy_multiplier = 0.0
-ambient_light_source = 1
-reflected_light_source = 1
-
 [sub_resource type="World3D" id="World3D_aqcyw"]
-environment = SubResource("Environment_gv6ra")
 
 [node name="Scenario" type="Node3D"]
 
