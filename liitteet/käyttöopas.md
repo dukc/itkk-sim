@@ -14,7 +14,7 @@ Voit muuttaa kuvakulmaa (zoomata) hiiren rullasta, tai sen puutteessa plus- ja m
 
 Jos/kun osut viholliseen, huomaat sen luodin sytytyspanoksen aiheuttamasta leimahduksesta viholliskoneen kyljessä. Maalit eivät tällä hetkellä ole tuhoutuvia, mutta niissä on osumalaskuri. Lopettaaksesi tehtävän ja nähdäksesi osumien määrän, vapauta kursori ja paina "lopeta tehtävä" ruudun oikeassa yläkulmassa.
 
-*Oikeasti vyö koostuu 10 ls pätkistä joita voi liittää yhteen niin monta kuin halutaan, mutta vaihdettava vyökannu ei mahdu kiinni jos pituus on yli 50 ls. Siksi 50 ls on standarti vyön pituus ja myös oletus tässä simulaattorissa.
+*Oikeasti vyö koostuu 10 ls pätkistä joita voi liittää yhteen niin monta kuin halutaan, mutta vaihdettavan vyökannun kansi ei mahdu kiinni jos pituus on yli 50 ls. Siksi 50 ls on standarti vyön pituus ja myös oletus tässä simulaattorissa.
 
 ## Tähtäimen selitys
 

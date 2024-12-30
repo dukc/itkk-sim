@@ -4,7 +4,7 @@ Tämä on [Eskolan Koodipajan](https://koodipaja.ate-eskola.fi) tuottama vapaast
 
 ![](liitteet/kuvakaappaus.png)
 
-Lue [`liitteet/käyttöopas.md`](liitteet/käyttöopas.md) yleistietoa ja itse käyttöä varten
+Lue [`liitteet/käyttöopas.md`](liitteet/käyttöopas.md) yleistietoa ja itse käyttöä varten. Huomaa että viimeisen ladattavan julkaisun ja kehitteillä olevan version välillä (jonka käyttöopas GitHubissa oletuksena näkyy) voi olla eroja - voit tarkistaa mahdolliset erot [muutoslokista](liitteet/muutosloki.md). 
 
 Koostamis - ja jakeluohjeet kirjoitettu Linuxin näkökulmasta. Windowsilla koostamisenkin pitäisi onnistua, mutta joudut selvittämään itse miten.
 
