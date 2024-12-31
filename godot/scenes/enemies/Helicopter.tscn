@@ -7,7 +7,7 @@ albedo_color = Color(0.211765, 0.235294, 0.0588235, 1)
 metallic = 0.3
 
 [sub_resource type="BoxMesh" id="2"]
-size = Vector3(9, 0.15, 2)
+size = Vector3(6, 0.15, 2)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_7vf7q"]
 top_radius = 0.15
@@ -17,12 +17,12 @@ radial_segments = 6
 
 [sub_resource type="BoxMesh" id="BoxMesh_v4341"]
 material = SubResource("StandardMaterial3D_1sra1")
-size = Vector3(3, 2, 5)
+size = Vector3(2.5, 2.5, 5)
 
 [sub_resource type="PrismMesh" id="PrismMesh_jpft0"]
 material = SubResource("StandardMaterial3D_1sra1")
 left_to_right = 0.3
-size = Vector3(2, 2, 3)
+size = Vector3(2.5, 2, 2.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0qewn"]
 atlas = ExtResource("1_mvfui")
@@ -55,15 +55,15 @@ animations = [{
 
 [sub_resource type="PrismMesh" id="PrismMesh_mphuf"]
 material = SubResource("StandardMaterial3D_1sra1")
-size = Vector3(3, 4, 1.6)
+size = Vector3(2.5, 4, 2)
 
 [sub_resource type="PrismMesh" id="PrismMesh_m5sij"]
 material = SubResource("StandardMaterial3D_1sra1")
 left_to_right = 1.1
-size = Vector3(2, 8, 1.2)
+size = Vector3(2.5, 8, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4kspt"]
-size = Vector3(2.8, 1.5, 9.86987)
+size = Vector3(2.4, 1.9, 9.86987)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yn282"]
 size = Vector3(0.949512, 0.872681, 6.69989)
@@ -82,25 +82,25 @@ cast_shadow = 0
 mesh = SubResource("2")
 
 [node name="Munition1" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, 2.82936, -0.423723, 0.480346)
+transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, 1.8, -0.424, 0.48)
 material_override = SubResource("StandardMaterial3D_1sra1")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_7vf7q")
 
 [node name="Munition2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, 3.78699, -0.423723, 0.480346)
+transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, 2.7, -0.424, 0.48)
 material_override = SubResource("StandardMaterial3D_1sra1")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_7vf7q")
 
 [node name="Munition4" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, -2.829, -0.423578, 0.48)
+transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, -1.8, -0.424, 0.48)
 material_override = SubResource("StandardMaterial3D_1sra1")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_7vf7q")
 
 [node name="Munition5" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, -3.787, -0.423578, 0.48)
+transform = Transform3D(1, 0, 0, 0, -0.00194029, 0.999998, 0, -0.999998, -0.00194029, -2.7, -0.424, 0.48)
 material_override = SubResource("StandardMaterial3D_1sra1")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_7vf7q")
@@ -114,8 +114,8 @@ transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114
 mesh = SubResource("PrismMesh_jpft0")
 
 [node name="Rotor" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.597, 1.10063)
-pixel_size = 0.09
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2.5, 1.101)
+pixel_size = 0.11
 sprite_frames = SubResource("SpriteFrames_7akw0")
 autoplay = "default"
 frame_progress = 0.376597
@@ -129,8 +129,8 @@ transform = Transform3D(0.0363887, -1.90942e-15, -0.999338, 0.999338, 6.95273e-1
 mesh = SubResource("PrismMesh_m5sij")
 
 [node name="TailRotor" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.756326, 0.664423, -8.3465)
-pixel_size = 0.03
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.756326, 0.971199, -8.3465)
+pixel_size = 0.02
 sprite_frames = SubResource("SpriteFrames_7akw0")
 autoplay = "default"
 frame_progress = 0.680484
