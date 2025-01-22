@@ -1,5 +1,9 @@
 # Versiohistoria
 
+## Muutokset uusimman julkaisun jälkeen
+
+- Kirjoitettu "onglemien selvittäminen" käyttöoppaaseen.
+
 ## 0.2.0
 
 - Luodit tekevät itsessään pienen hajontakuvion sen sijaan että osuisivat täsmälleen samaan paikkaan aina jos asetta pitää paikallaan. Myös lähtönopeus vaihtelee hieman.

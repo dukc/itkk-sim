@@ -16,6 +16,14 @@ Jos/kun osut viholliseen, huomaat sen luodin sytytyspanoksen aiheuttamasta leima
 
 *Oikeasti vyö koostuu 10 ls pätkistä joita voi liittää yhteen niin monta kuin halutaan, mutta vaihdettavan vyökannun kansi ei mahdu kiinni jos pituus on yli 50 ls. Siksi 50 ls on standarti vyön pituus ja myös oletus tässä simulaattorissa.
 
+### Ongelmien selvittäminen
+
+On mahdollista, että tietokoneesi ei sisällä sellaisia ääni- tai grafiikkakirjastoja kuin simulaattori olettaa, jolloin ohjelma ei käynnisty noin vain.
+
+Tämän ongelman voi onneksi usein ohittaa. Käynnistä simulaattori komentokehotteelta. Saat mahdollisesti vihiä ongelmasta. Käynnistä ohjelma seuraavaksi liittämällä `--help` - parametri ohjelman nimen perään, eli käyttöjärjestelmästä riippuen `./itkksim.x86_64 --help` tai `itkksim.exe --help`. Saat listan parametreista joita ohjelmalle voi antaa kun sen komentokehotteella käynnistää. Erityisesti eri vaihtoehtoja `--audio-driver`, `--display-driver` ja `--rendering-driver` - argumenteille kannattaa kokeilla.
+
+Voit myös avata ongelmaraportin (issue) projektin GitHub-sivulla. Hyväksyn raportit niin suomen kuin englannin kielellä. Olethan yksiselitteinen ja yksityiskohtainen, mikäli teet näin. Jos raportissa lukee vain "ohjelma ei käynnisty", en tee tiedolla mitään. Sen sijaan kertomalla käyttöjärjestelmäsi ja simulaattorisi version ja kopioimalla mukaan virheviestin jonka saat kun käynnistät ohjelman komentokehotteella voin jo alkaa arvailla mistä on kyse. Ongelman ei tosin tarvitse olla ettei ohjelma toimi - myös esimerkiksi harhaanjohtavista ohjeista, epärealismeista tähtäimessä/ballistiikassa, typerästä käyttöliittymästä jne. voi ilmoittaa silloin kun puutteita ilmenee.
+
 ## Tähtäimen selitys
 
 ![](Tähtäin.png)

@@ -8,7 +8,7 @@
 (pkgs.buildFHSEnv {
   name = "simple-x11-env";
   targetPkgs = pkgs: (with pkgs; [
-    steam-run
+    steam-run-free
   ]) ++ (with pkgs.xorg; [
 
   ]);
