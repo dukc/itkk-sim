@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bfmupaalbwuqy"]
 
-[ext_resource type="Script" path="res://scenes/gun/Player.gd" id="1"]
+[ext_resource type="Script" uid="uid://qgxv6bsc5ovh" path="res://scenes/gun/Player.gd" id="1"]
 [ext_resource type="Material" path="res://scenes/gun/pistol_base_mat.tres" id="2_dvj0w"]
 [ext_resource type="AudioStream" uid="uid://c478fks1nsswq" path="res://scenes/gun/soundscrate-gun-shot-1.wav" id="6"]
 
@@ -73,8 +73,8 @@ resource_name = "idle"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7fono"]
 _data = {
-"fire": SubResource("8"),
-"idle": SubResource("9")
+&"fire": SubResource("8"),
+&"idle": SubResource("9")
 }
 
 [node name="Machine Gun" type="CharacterBody3D"]
