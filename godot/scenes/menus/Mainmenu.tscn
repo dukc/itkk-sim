@@ -55,8 +55,7 @@ offset_right = 102.0
 offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Aloita 1. tehtävä
-"
+text = "Aloita 1. tehtävä"
 label_settings = SubResource("LabelSettings_gvvhc")
 horizontal_alignment = 1
 vertical_alignment = 1

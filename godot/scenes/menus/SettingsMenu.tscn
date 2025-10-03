@@ -54,8 +54,7 @@ offset_right = 20.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Päävalikkoon
-"
+text = "Päävalikkoon"
 
 [node name="Button2" type="Button" parent="."]
 layout_mode = 1
@@ -85,8 +84,7 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Palauta
-oletuksiin
-"
+oletuksiin"
 
 [node name="BeltLengthSetter" type="HSlider" parent="."]
 layout_mode = 0
