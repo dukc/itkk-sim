@@ -1,6 +1,6 @@
 import godot, godot.subviewport, godot.engine, godot.node, godot.resourcepreloader;
 
-import std.conv;
+import std.algorithm, std.conv;
 
 class SceneSwitcher : GodotScript!Node
 {   @Method void _quit()
@@ -14,16 +14,11 @@ class SceneSwitcher : GodotScript!Node
                 .as!PackedScene.instantiate();
 
             auto receiver = newScene.getNode("SceneSwitcher");
-            if(auto oldMsg = receiver.getNodeOrNull("In"))
-            {   receiver.removeChild(oldMsg);
-                oldMsg.queueFree();
-            }
-            if(auto msg = getNodeOrNull("Out"))
-            {   removeChild(msg);
-                msg.name = String("In");
-                receiver.addChild(msg);
-                receiver.owner = newScene.owner? newScene.owner: newScene;
-
+            if(auto outNode = getNodeOrNull("Out"))
+                foreach(output; outNode.getChildren.map!(mem => mem.as!Node))
+            {   outNode.removeChild(output);
+                receiver.addChild(output);
+                output.owner = newScene.owner? newScene.owner: newScene;
             }
             getTree.root.addChild(newScene);
         } else

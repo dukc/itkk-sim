@@ -1,6 +1,6 @@
 # 12,7mm ITKK 96 pöytäkonesimulaattori
 
-Tämä on [Eskolan Koodipajan](https://koodipaja.ate-eskola.fi) tuottama vapaasti levitettävä ilmatorjuntakonekiväärisimulaattori. Soveltuu tähtäimen käytön ja ennakon arvoinnin harjoitteluun.
+Tämä on [Eskolan Koodipajan](https://koodipaja.ate-eskola.fi) tuottama vapaasti levitettävä ilmatorjuntakonekiväärisimulaattori. Soveltuu tähtäimen käytön ja ennakon arvioinnin harjoitteluun.
 
 ![](liitteet/kuvakaappaus.png)
 

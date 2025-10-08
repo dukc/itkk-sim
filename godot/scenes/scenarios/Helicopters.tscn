@@ -93,17 +93,19 @@ name = "4. HeKo"
 
 [node name="SceneSwitcher" type="SceneSwitcher" parent="."]
 
-[node name="Out" type="MissionResult" parent="SceneSwitcher"]
+[node name="Out" type="Node" parent="SceneSwitcher"]
 
-[connection signal="fire" from="Player/Pivot/pistol" to="SceneSwitcher/Out" method="register_shot" unbinds=1]
+[node name="Result" type="MissionResult" parent="SceneSwitcher/Out"]
+
+[connection signal="fire" from="Player/Pivot/pistol" to="SceneSwitcher/Out/Result" method="register_shot" unbinds=1]
 [connection signal="button_down" from="Player/HUD/QuitButton" to="SceneSwitcher" method="_switch_to" binds= ["Report"]]
 [connection signal="s_zoom" from="CameraZoomer" to="Player/Pivot/Camera3D" method="set_perspective" binds= [0.25, 10000.0]]
 [connection signal="s_zoom" from="CameraZoomer" to="SubViewportContainer/SubViewport/SightPicture" method="set_perspective" binds= [10.0, 4000.0]]
-[connection signal="body_entered" from="Helicopter A" to="SceneSwitcher/Out" method="register_hit" binds= [0]]
+[connection signal="body_entered" from="Helicopter A" to="SceneSwitcher/Out/Result" method="register_hit" binds= [0]]
 [connection signal="s_reportPosition" from="Helicopter A/GPS" to="Player/DistanceSensor" method="measure_distance"]
-[connection signal="body_entered" from="Helicopter B" to="SceneSwitcher/Out" method="register_hit" binds= [1]]
-[connection signal="body_entered" from="Helicopter C" to="SceneSwitcher/Out" method="register_hit" binds= [2]]
-[connection signal="body_entered" from="Helicopter D" to="SceneSwitcher/Out" method="register_hit" binds= [3]]
+[connection signal="body_entered" from="Helicopter B" to="SceneSwitcher/Out/Result" method="register_hit" binds= [1]]
+[connection signal="body_entered" from="Helicopter C" to="SceneSwitcher/Out/Result" method="register_hit" binds= [2]]
+[connection signal="body_entered" from="Helicopter D" to="SceneSwitcher/Out/Result" method="register_hit" binds= [3]]
 
 [editable path="Player"]
 [editable path="Helicopter A"]

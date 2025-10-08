@@ -2,6 +2,7 @@
 
 ## Muutokset uusimman julkaisun jälkeen
 
+- Asetukset jäävät muistiin tehtävän päättämisen jälkeen.
 - Kirjoitettu "onglemien selvittäminen" käyttöoppaaseen.
 
 ## 0.2.0

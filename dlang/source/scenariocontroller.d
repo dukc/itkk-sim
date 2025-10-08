@@ -1,6 +1,5 @@
 import godot, godot.engine, godot.node;
 import missionresult, missionsettings, pistol, targetcontroller, util;
-debug import std.stdio;
 
 import std.conv : text;
 
@@ -11,17 +10,19 @@ class ScenarioController : GodotScript!Node
 
     @Method void _ready()
     {   import godot.resourceloader;
-        if (Engine.isEditorHint()) return;
+        if (Engine.isEditorHint) return;
 
         auto receiver = getNode("../SceneSwitcher");
-        auto outNode = receiver.getNode("Out").as!MissionResult;
+        auto outNode = receiver.getNode("Out/Result").as!MissionResult;
         outNode.initArrays(targets.length);
 
         float speedFactor = 1.0f;
-        if(auto inNode = receiver.getNodeOrNull("In"))
+        if(auto inNode = receiver.getNodeOrNull("Settings"))
         {   auto settings = inNode.as!MissionSettingsNode;
             gun.ammoSpace = settings.beltLength;
             speedFactor = settings.enemySpeedFactor;
+            receiver.removeChild(inNode);
+            receiver.getNode("Out").addChild(inNode);
         }
 
         foreach(i; 0 .. targets.length)

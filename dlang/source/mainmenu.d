@@ -4,17 +4,18 @@ class MainMenu : GodotScript!Control
 {   @Method void _enter_tree()
     {   if (Engine.isEditorHint()) return;
 
-        auto data = getNodeOrNull("./SceneSwitcher/In");
+        auto data = getNodeOrNull("./SceneSwitcher/Settings");
 
         if(data)
-        {   auto switcher = getNode("./SceneSwitcher");
-            auto oldData = getNodeOrNull("./SceneSwitcher/Out");
+        {   auto output = getNode("./SceneSwitcher/Out");
+            auto oldData = getNodeOrNull("./SceneSwitcher/Out/Settings");
             if(oldData)
-            {   switcher.removeChild(oldData);
+            {   output.removeChild(oldData);
                 oldData.queueFree();
             }
 
-            data.name = String("Out");
+            getNode("./SceneSwitcher").removeChild(data);
+            output.addChild(data);
         }
     }
 }

@@ -158,6 +158,12 @@ vertical_alignment = 1
 
 [node name="SceneSwitcher" type="SceneSwitcher" parent="."]
 
+[node name="Out" type="Node" parent="SceneSwitcher"]
+
+[node name="Settings" type="MissionSettingsNode" parent="SceneSwitcher/Out"]
+beltLength = 50
+enemySpeedFactor = 1.0
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 offset_left = 33.0

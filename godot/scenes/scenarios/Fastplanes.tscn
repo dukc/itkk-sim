@@ -86,14 +86,16 @@ light_bake_mode = 0
 
 [node name="SceneSwitcher" type="SceneSwitcher" parent="."]
 
-[node name="Out" type="MissionResult" parent="SceneSwitcher"]
+[node name="Out" type="Node" parent="SceneSwitcher"]
 
-[connection signal="fire" from="Player/Pivot/pistol" to="SceneSwitcher/Out" method="register_shot"]
+[node name="Result" type="MissionResult" parent="SceneSwitcher/Out"]
+
+[connection signal="fire" from="Player/Pivot/pistol" to="SceneSwitcher/Out/Result" method="register_shot"]
 [connection signal="button_down" from="Player/HUD/QuitButton" to="SceneSwitcher" method="_switch_to" binds= ["Report"]]
-[connection signal="body_entered" from="Plane A" to="SceneSwitcher/Out" method="register_hit" binds= [0]]
+[connection signal="body_entered" from="Plane A" to="SceneSwitcher/Out/Result" method="register_hit" binds= [0]]
 [connection signal="s_reportPosition" from="Plane A/GPS" to="Player/DistanceSensor" method="measure_distance"]
-[connection signal="body_entered" from="Plane B" to="SceneSwitcher/Out" method="register_hit" binds= [1]]
-[connection signal="body_entered" from="Plane C" to="SceneSwitcher/Out" method="register_hit" binds= [2]]
+[connection signal="body_entered" from="Plane B" to="SceneSwitcher/Out/Result" method="register_hit" binds= [1]]
+[connection signal="body_entered" from="Plane C" to="SceneSwitcher/Out/Result" method="register_hit" binds= [2]]
 [connection signal="s_zoom" from="CameraZoomer" to="Player/Pivot/Camera3D" method="set_perspective" binds= [0.25, 10000.0]]
 [connection signal="s_zoom" from="CameraZoomer" to="SubViewportContainer/SubViewport/SightPicture" method="set_perspective" binds= [10.0, 4000.0]]
 

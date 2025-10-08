@@ -8,7 +8,8 @@ class Report : GodotScript!Control
         if (Engine.isEditorHint()) return;
 
         auto textNode = getNode("./Text").as!Label;
-        auto data = getNode("./SceneSwitcher/In").as!MissionResult;
+        auto data = getNode("./SceneSwitcher/Result").as!MissionResult;
+        auto settings = getNode("./SceneSwitcher/Settings").as!MissionResult;
 
         Appender!string builder;
 
@@ -29,5 +30,8 @@ class Report : GodotScript!Control
         }
 
         textNode.text = String(builder[]);
+
+        getNode("./SceneSwitcher").removeChild(settings.as!Node);
+        getNode("./SceneSwitcher/Out").addChild(settings.as!Node);
     }
 }

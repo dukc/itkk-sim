@@ -7,35 +7,35 @@ class SettingsMenu : GodotScript!Control
     @Method void _enter_tree()
     {   if (Engine.isEditorHint()) return;
 
-        auto data = getNodeOrNull("./SceneSwitcher/In");
+        auto data = getNodeOrNull("./SceneSwitcher/Settings");
 
         if(data) replaceResultWith(data);
-        else replaceResultWith(getNode("./SceneSwitcher/DefaultOut"));
+        else replaceResultWith(getNode("./DefaultSettings"));
     }
 
     void replaceResultWith(Node newRes)
     {   newRes = newRes.duplicate();
 
-        auto switcher = getNode("./SceneSwitcher");
-        auto oldData = getNode("./SceneSwitcher/Out");
+        auto switcherOut = getNode("./SceneSwitcher/Out");
+        auto oldData = getNodeOrNull("./SceneSwitcher/Out/Settings");
         if (oldData)
-        {   switcher.removeChild(oldData);
+        {   switcherOut.removeChild(oldData);
             oldData.queueFree();
         }
 
         if(auto oldParent = newRes.getParent()) oldParent.removeChild(newRes);
-        switcher.addChild(newRes);
-        newRes.name = String("Out");
+        newRes.name = String("Settings");
+        switcherOut.addChild(newRes);
 
         updateUI();
     }
 
     @Method void resetDefaults()
-    {   replaceResultWith(getNode("./SceneSwitcher/DefaultOut"));
+    {   replaceResultWith(getNode("./DefaultSettings"));
     }
 
     @Method void updateUI()
-    {   auto data = getNodeOrNull("./SceneSwitcher/Out").as!MissionSettingsNode;
+    {   auto data = getNodeOrNull("./SceneSwitcher/Out/Settings").as!MissionSettingsNode;
         getNode("BeltLengthSetter").as!Range.value = data.beltLength;
         getNode("BeltLengthLabel").as!Label.text = text(data.beltLength).String;
         getNode("EnemySpeedSetter").as!Range.value = data.enemySpeedFactor;
@@ -43,12 +43,12 @@ class SettingsMenu : GodotScript!Control
     }
 
     @Method void setBeltLength()
-    {   getNode("./SceneSwitcher/Out").as!MissionSettingsNode.beltLength
+    {   getNode("./SceneSwitcher/Out/Settings").as!MissionSettingsNode.beltLength
             = cast(int) getNode("BeltLengthSetter").as!Range.value;
         updateUI();
     }
     @Method void setEnemySpeedFactor()
-    {   getNode("./SceneSwitcher/Out").as!MissionSettingsNode.enemySpeedFactor
+    {   getNode("./SceneSwitcher/Out/Settings").as!MissionSettingsNode.enemySpeedFactor
             = getNode("EnemySpeedSetter").as!Range.value;
         updateUI();
     }
