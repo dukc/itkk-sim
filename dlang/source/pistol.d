@@ -24,6 +24,8 @@ class Pistol : GodotScript!Node3D
 
    bool cycled = true;
 
+   //jäljellä olevat laukaukset normaalisti
+   //käytetään valojuovien annosteluun silloinkin kun laukauksia on rajattomasti
    int ammo = 0;
    Ref!PackedScene ballPrefab;
    Ref!PackedScene tracerPrefab;
@@ -69,7 +71,8 @@ class Pistol : GodotScript!Node3D
          import std.random : uniform;
          import godot.node3d, godot.rigidbody3d;
 
-         if(ammoSpace) ammo--;
+         // Sitä varten kun laukaksia on rajattomasti
+         if(--ammo < 0) ammo += 3;
          cycleTimer.start();
          size_t bulletType = ammo % 3 == 0;
          auto bullet = [ballPrefab, tracerPrefab][bulletType].instantiate()
