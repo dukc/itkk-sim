@@ -51,7 +51,7 @@ shape = SubResource("CylinderShape3D_ji42d")
 [node name="Airdrag" type="Airdrag" parent="."]
 transsonicSpeed = 310.0
 transsonicFactor = 2.6667
-strengthMil = 0.010838
+strengthMil = 0.021676
 altitudeEffectPerKm = 0.877
 
 [connection signal="body_entered" from="." to="Transformer" method="_transform"]

@@ -21,7 +21,7 @@ class Airdrag : GodotScript!Node
         auto vel = piece.linearVelocity;
         auto spd = vel.length;
         piece.applyCentralForce(
-            -vel * spd * (strengthMil * .001) *
+            -vel * spd * (strengthMil * .0005) *
             (spd > transsonicSpeed? transsonicFactor: 1) *
             altitudeEffectPerKm ^^ (piece.position.z / 1000)
         );

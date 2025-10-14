@@ -12,8 +12,8 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 0.05
 continuous_cd = true
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 linear_velocity = Vector3(0, 0, -830)
 
 [node name="SelfDestructor" type="Timer" parent="."]
@@ -30,7 +30,7 @@ shape = SubResource("CylinderShape3D_ji42d")
 [node name="Airdrag" type="Airdrag" parent="."]
 transsonicSpeed = 310.0
 transsonicFactor = 2.6667
-strengthMil = 0.010838
+strengthMil = 0.021676
 altitudeEffectPerKm = 0.877
 
 [connection signal="body_entered" from="." to="Transformer" method="_transform"]
