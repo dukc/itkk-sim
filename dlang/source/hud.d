@@ -2,19 +2,26 @@ import godot, godot.control, godot.engine, godot.label, godot.progressbar, godot
 
 class HUD : GodotScript!Control
 {  alias owner this;
-   @OnReady!"VBoxContainer/AmmoLabel" Label ammoLabel;
-   @OnReady!"VBoxContainer/DistanceLabel" Label distanceLabel;
-   @OnReady!"VBoxContainer/ProgressBar" ProgressBar ammoBar;
+   bool isReady;
+   Label ammoLabel;
+   Label distanceLabel;
+   ProgressBar ammoBar;
 
    @Method _ready()
    {  if (Engine.isEditorHint()) return;
+      if (isReady) return;
+      scope(success) isReady = true;
 
-         // getParent.getNode(gs!"Arm/Hand/Pistol").get(gs!"max_bullet")));
+      ammoLabel = getNode("VBoxContainer/AmmoLabel").as!Label;
+      distanceLabel = getNode("VBoxContainer/DistanceLabel").as!Label;
+      ammoBar = getNode("VBoxContainer/ProgressBar").as!ProgressBar;
       ammoBar.value = 100;
    }
 
    @Method _on_pistol_s_ammo(long arg)
    {  import std.conv;
+
+      _ready();
 
       auto count = arg >> 32;
       auto capacity = arg & 0xFFFF_FFFF;

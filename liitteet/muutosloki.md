@@ -5,6 +5,7 @@
 - Asetukset jäävät muistiin tehtävän päättämisen jälkeen.
 - Kirjoitettu "ongelmien selvittäminen" käyttöoppaaseen.
 - Virhekorjaus: Joka laukaus oli valojuova rajattomalla vyön pituudella.
+- Virhekorjaus: Patruunalaskuri näytti väärin ennen kuin ampui ensimmäisen kerran.
 
 ## 0.2.0
 

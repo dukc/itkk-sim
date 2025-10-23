@@ -58,6 +58,7 @@ class Pistol : GodotScript!Node3D
       cycleTimer.waitTime = cycleTime;
       reloadTimer.waitTime = reloadTime;
       ammo = ammoSpace;
+      s_ammo(ammo, ammoSpace);
       ballPrefab = ResourceLoader.load(ballPath).as!PackedScene;
       tracerPrefab = ResourceLoader.load(tracerPath).as!PackedScene;
    }
