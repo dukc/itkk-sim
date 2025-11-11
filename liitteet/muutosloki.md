@@ -6,6 +6,7 @@
 - Kirjoitettu "ongelmien selvittäminen" käyttöoppaaseen.
 - Virhekorjaus: Joka laukaus oli valojuova rajattomalla vyön pituudella.
 - Virhekorjaus: Patruunalaskuri näytti väärin ennen kuin ampui ensimmäisen kerran.
+- Ohjelmoitu luodin ilmanvastuskerroin vaihtumaan nopeuden mukaan G7-luodin tapaan. Ennen oli vain kaksi eri ilmanvastuskerrointa joista toiseen siirryttiin hieman äänen nopeutta alempana. Kohdistukset piti luonnollisesti tarkistaa uudelleen, mutta ampujan kannalta ero entiseen on käytännössä olematon - vanhakin malli toimi varsin realistisesti!
 
 ## 0.2.0
 

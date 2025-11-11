@@ -148,7 +148,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/pistol"]
 libraries = {
-"": SubResource("AnimationLibrary_7fono")
+&"": SubResource("AnimationLibrary_7fono")
 }
 
 [node name="ReloadTimer" type="Timer" parent="Pivot/pistol"]

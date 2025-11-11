@@ -40,14 +40,12 @@ near = 10.0
 far = 3000.0
 
 [node name="Laskettu ballistiikka" type="Node" parent="."]
-editor_description = "Lähtö: 830m/s
-Energianpuoliintumismatka: 600m
-Tähtäinkorkeus 12cm
-G: 9.825
+editor_description = "Kohdistettu ampumalla \"Ball\" lähtönopeudella 830m/s vaakatasossa, ja olettamalla tähtäinkorkeudeksi 12cm
 
-Lentoaika 1500m 2.875130 s
+Lentoaika 500 metriin 685ms
+Lentoaika 1500 metriin 2,9s
 
-Ennakkoringit heko 150m, ryko 300m, suko 666,67m"
+Ennakkoringit heko 150m, ryko 300m, suko 1000m, mikä osuu alle prosentin päähän niiden nimellisistä lentonopeuksista käyttöoppaassa."
 
 [node name="Zero" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100)
@@ -59,34 +57,34 @@ fixed_size = true
 texture = ExtResource("1_obk78")
 
 [node name="500m" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.328, -500)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.277, -500)
 
 [node name="RightLevel" type="MeshInstance3D" parent="500m"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.173, 0, 0)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.1, 0, 0)
 mesh = SubResource("CapsuleMesh_mc21n")
 
 [node name="LeftLevel" type="MeshInstance3D" parent="500m"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5.173, 0, 0)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5.1, 0, 0)
 mesh = SubResource("CapsuleMesh_mc21n")
 
 [node name="RightLead20kmph" type="MeshInstance3D" parent="500m"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.806, 0, 0)
 mesh = SubResource("CapsuleMesh_crgwy")
 
 [node name="RightLead40kmph" type="MeshInstance3D" parent="500m"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.76, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.612, 0, 0)
 mesh = SubResource("CapsuleMesh_crgwy")
 
 [node name="LeftLead20kmph" type="MeshInstance3D" parent="500m"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.88, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.806, 0, 0)
 mesh = SubResource("CapsuleMesh_crgwy")
 
 [node name="LeftLead40kmph" type="MeshInstance3D" parent="500m"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.76, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.612, 0, 0)
 mesh = SubResource("CapsuleMesh_crgwy")
 
 [node name="1000m" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.1, -1000)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10.8, -1000)
 
 [node name="Crosshair" type="Sprite3D" parent="1000m"]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
@@ -95,7 +93,7 @@ fixed_size = true
 texture = ExtResource("2_78utr")
 
 [node name="1500m" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871558, 0, -0.0871558, 0.996195, 0, -31.6, -1500)
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871558, 0, -0.0871558, 0.996195, 0, -31.2004, -1500)
 
 [node name="Crosshair" type="Sprite3D" parent="1500m"]
 transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
@@ -141,7 +139,7 @@ mesh = SubResource("PlaneMesh_d1qh1")
 skeleton = NodePath("")
 
 [node name="1500mJet" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, -31.6, -1500)
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, -31.2, -1500)
 
 [node name="JetLeadRight" parent="1500mJet" instance=ExtResource("3_68l75")]
 transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 1.9, 0, -10, -8.30516e-08, 0, 0, 0)

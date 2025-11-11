@@ -57,4 +57,5 @@ Periaattessa paras tapa osua on että aseella pidetään koko ajan sillä hetkel
  - Wikimedia commonsin [kuvista aiheesta](https://commons.wikimedia.org/wiki/Category:NSV_in_Finnish_service) ovat peräisin sekä takaisinmallinnukseen käyttämäni heijastintähtäinkuvat että kuvake/päävalikkokuva aseesta.
  - Varusmiespalvelukseni jääkärijoukkueen ITKK-ampujana Kainuun prikaatissa 2012. Vaikka kaikki "raaka" tieto löytyy julkisista lähteistä ainakin merkittäviltä osiltaan, ei minulla olisi kokonaiskuvaa aseesta ilman koulutusta.
  - Maanpuolustuskoulutusyhdistyksen ilmatorjuntakurssi jonka olen käynyt 2-3 kertaa kerratakseni ja täydentääkseni tätä kokonaiskuvaa.
- - Puolustusvoimien simulaattori AMSI 12,7. En tietenkään ole voinut kopioida siitä mitään omaani, mutta muistikuvienkin varassa välittyy ideoita. 
+ - Puolustusvoimien simulaattori AMSI 12,7. En tietenkään ole voinut kopioida siitä mitään omaani, mutta muistikuvienkin varassa välittyy ideoita.
+ - Ilmanvastuskertoimen funktio (G7) nopeuden suhteen luodeille on peräisin osoitteesta https://www.jbmballistics.com/ballistics/downloads 

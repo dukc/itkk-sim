@@ -61,6 +61,8 @@ zoom_out={
 [physics]
 
 common/physics_ticks_per_second=180
+common/max_physics_steps_per_frame=20
+3d/physics_engine="GodotPhysics3D"
 3d/default_gravity=9.825
 3d/default_gravity_vector=Vector3(0, 0, -1)
 3d/default_linear_damp=0.0
