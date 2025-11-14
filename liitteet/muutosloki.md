@@ -2,6 +2,10 @@
 
 ## Muutokset uusimman julkaisun jälkeen
 
+Ei vielä mitään...
+
+## 0.2.1
+
 - Asetukset jäävät muistiin tehtävän päättämisen jälkeen.
 - Kirjoitettu "ongelmien selvittäminen" käyttöoppaaseen.
 - Virhekorjaus: Joka laukaus oli valojuova rajattomalla vyön pituudella.
